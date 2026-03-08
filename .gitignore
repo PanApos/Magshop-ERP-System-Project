@@ -1,0 +1,16 @@
+# Ignore Notes (Private Study Files)
+Notes/
+VERSION_NOTES.md
+STUDY_PLAN.md
+
+# Ignore system files
+.DS_Store
+Thumbs.db
+
+# Ignore editor files
+.vscode/
+*.swp
+*.swo
+
+# Ignore OS files
+*.log
