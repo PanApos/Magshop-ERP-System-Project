@@ -100,11 +100,7 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 🔹 **LinkedIn:** [\[Panagiotis Apostolelis\]](https://www.linkedin.com/in/panagiotis-apostolelis/)<br>
 🔹 **Figma:** [\[Παναγιώτης Αποστολέλης\]](https://www.figma.com/@PanApos)<br>
 
----
 
-_Built with 💙 and lots of ☕_
-
-_Last Updated: 2025_
 
 ---
 
@@ -216,9 +212,5 @@ _Έρχεται σύντομα με screenshots_
 🔹 **Figma:** [\[Παναγιώτης Αποστολέλης\]](https://www.figma.com/@PanApos)<br>
 
 ---
-
-_Φτιαγμένο με 💙 και πολλή ☕_
-
-_Τελευταία Ενημέρωση: 2025_
 
 </details>
