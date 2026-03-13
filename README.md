@@ -72,7 +72,7 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 
 ## Project Preview
 
-<img src="./images/finance.png" alt="finance" width="400" ><br>
+<img src="./Images/finance.png" alt="finance" width="400" ><br>
 
 **More Screenshots**
 
@@ -80,13 +80,13 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
   <summary><b>Click to view the full gallery / Κάντε κλικ για την πλήρη συλλογή </b></summary>
   
   <p align="center">
-    <img src="./images/full_project_figma.png" alt="full_project_figma_design" width="700"><br>
-    <img src="./images/finance.png" alt="finance" width="700"><br>
-    <img src="./images/finance_grid.png"  alt="finance_grid" width="700" ><br>
-    <img src="./images/orders.png" alt="orders" width="700" ><br>
-    <img src="./images/orders_grid.png" alt="orders_grid" width="700" ><br>
-    <img src="./images/wireframe-finance.png" alt="wireframe_finance" width="700" ><br>
-    <img src="./images/wireframe_orders.png" alt="wirefram_orders" width="700" ><br>
+    <img src="./Images/full_project_figma.png" alt="full_project_figma_design" width="700"><br>
+    <img src="./Images/finance.png" alt="finance" width="700"><br>
+    <img src="./Images/finance_grid.png"  alt="finance_grid" width="700" ><br>
+    <img src="./Images/orders.png" alt="orders" width="700" ><br>
+    <img src="./Images/orders_grid.png" alt="orders_grid" width="700" ><br>
+    <img src="./Images/wireframe-finance.png" alt="wireframe_finance" width="700" ><br>
+    <img src="./Images/wireframe_orders.png" alt="wirefram_orders" width="700" ><br>
 
   </p>
 </details>
