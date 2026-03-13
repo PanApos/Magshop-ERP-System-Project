@@ -1,4 +1,4 @@
-/* Magshop ERP v1.2  */
+/* Magshop ERP v2.0  */
 
 /* CSS Variables */
 :root {
@@ -23,12 +23,13 @@ body {
   color: var(--text-main);
 }
 
-/* MAIN CONTAINER */
-#financeContent {
+/* MAIN CONTENT */
+.main-wrapper {
   max-width: 95%;
   margin: 0 auto;
-  padding: 20px;
+  padding: 20px 40px;
 }
+
 
 /* HEADER */
 .header-main {
@@ -86,7 +87,7 @@ body {
   cursor: pointer;
 }
 
-/* STATS - FLEX HORIZONTAL  */
+/* STATS */
 .stats-grid {
   display: flex;
   justify-content: space-around;
@@ -110,9 +111,15 @@ body {
 
 .stats-value { font-size: 32px; font-weight: 700; }
 
+.stats-card--active {
+  transform:  translateY(-4px);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  outline: 3px solid rgba(255,255,255,0.6);
+}
+
 /* FORM */
 .entry-form {
-  display: flex; /* FLEX not grid */
+  display: flex;
   gap: 24px;
   padding: 32px;
   background: white;
@@ -127,7 +134,6 @@ body {
   padding: 12px;
   border: 2px solid #e9ecef;
   border-radius: 8px;
-  min-width: 200px;
 }
 
 .btn--success {
@@ -141,16 +147,57 @@ body {
   white-space: nowrap;
 }
 
+
+/* TABS ΕΣΟΔΑ/ΕΞΟΔΑ */
+.tabs-container {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  justify-content: left;
+}
+
+.tab-btn.active {
+  color:white;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+#tab-income.active, #tab-income:hover {
+  background: linear-gradient(135deg, var(--success), #2ecc71);
+  border-color: var(--success);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52,152,219,0.3);
+}
+
+#tab-expense.active, #tab-expense:hover {
+  background: linear-gradient(135deg, var(--danger), #e74c3c);
+  border-color: var(--danger);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52,152,219,0.3);
+}
+
+.tab-btn {
+  background: var(--bg-card);
+  color: var(--text-main);
+  padding: 12px 24px;
+  border-radius: 8px;;
+  border: 2px solid var(--border-color);
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
 /* TABLE */
 .table-container {
   background: white;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  overflow: hidden;
+  overflow-x: auto;
   margin: 32px 0;
 }
 
-table { width: 100%; border-collapse: collapse; }
+table { 
+  width: 100%; 
+  border-collapse: collapse; }
 
 th {
   background: #f8f9fa;
@@ -160,12 +207,22 @@ th {
   border-bottom: 2px solid var(--border-color);
 }
 
-td { padding: 16px; 
-    border-bottom: 1px solid var(--border-color); 
+td { 
+  padding: 16px; 
+  border-bottom: 1px solid var(--border-color); 
 }
+
+td small {
+  color: var(--success);
+  font-size: 0.85rem;
+}
+
+td .downpayment-info {color: var(--warning);}
+td .remaining-info { color: var(--danger);}
 
 tr:hover { background: rgba(52,152,219,0.04); }
 
+/* Status & actions */
 .action-btn {
   background: none;
   border: none;
@@ -180,6 +237,9 @@ tr:hover { background: rgba(52,152,219,0.04); }
   background: var(--danger);
   color: white;
   transform: scale(1.1);
+}
+.action-btn:first-of-type:hover {
+  background: var(--success);
 }
 
 /* SECTIONS */

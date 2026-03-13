@@ -1,8 +1,8 @@
-// MAGSHOP ERP v1.2
+// MAGSHOP ERP v2.0
 
-console.log('Magshop ERP v1.2 loaded');
+console.log('Magshop ERP v2.0 loaded');
 
-let entries = JSON.parse(localStorage.getItem('magshop_v1.2') || '[]');
+let entries = JSON.parse(localStorage.getItem('magshop_v2.0') || '[]');
 
 //DOM ELEMENTS
 const btnTamio = document.getElementById('btn-tamio');
@@ -39,6 +39,10 @@ function addEntry() {
     const type = document.getElementById('entryType')?.value || '📈 Έσοδο';
     const product = document.getElementById('product')?.value.trim();
     const customer = document.getElementById('customer')?.value.trim();
+    const phone = document.getElementById('phone')?.value.trim();
+    const downpayment = parseFloat(document.getElementById('downpayment')?.value) || 0;
+    const notes = document.getElementById('notes')?.value.trim()||'' ;
+    const method = document.getElementById('method')?.value || '💵 Μετρητά'; 
     const amount = parseFloat(document.getElementById('amount')?.value) || 0;
     const dateStr = document.getElementById('entryDate')?.value || new Date().toISOString().split('T')[0];
 
@@ -52,7 +56,12 @@ function addEntry() {
         type,
         product,
         customer,
+        phone,
+        downpayment,
+        notes,
+        method,
         amount,
+        paid:false,
         date: new Date(dateStr).toLocaleDateString('el-GR'),
         filterDate:dateStr
     }
@@ -67,9 +76,60 @@ function addEntry() {
 
 // CLEAR FORM FIELDS
 function clearForm() {
-    ['product', 'customer', 'amount', 'entryDate'].forEach(id => {
+    ['product', 'customer', 'amount', 'entryDate', 'phone', 'downpayment', 'notes'].forEach(id => {
         document.getElementById(id).value = '';
     });
+    document.getElementById('method').selectedIndex = 0;
+}
+
+// TABS INCOME/EXPENSE 
+let currentTab ='income';
+
+function switchTab(tab) {
+    currentTab = tab;
+
+    //Update active class
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.getElementById(`tab-${tab}`).classList.add('active');
+    document.querySelector('.stats-grid--income').classList.toggle('stats-card--active', tab === 'income');
+    document.querySelector('.stats-grid--expense').classList.toggle('stats-card--active', tab === 'expense');
+
+    renderTable();
+    updateTabDisplay();
+
+    console.log(`Switched to ${tab}`);
+    
+}
+
+// FORM UPDATE + TAB DISPLAY / SYNC
+function updateTabDisplay() {
+    const customerField = document.getElementById('customer');
+    const phoneField = document.getElementById('phone');
+    const typeSelect = document.getElementById('entryType');
+    const headerCell = document.querySelector('#tableHeaderRow th:nth-child(4)');
+    const phoneHeader = document.getElementById('phoneHeader')
+
+    if (currentTab === 'income') {
+        //Έσοδα
+        customerField.placeholder = 'Πελάτης';
+        if (phoneField) phoneField.placeholder ='Τηλέφωνο';
+        typeSelect.value = '📈 Έσοδο'; 
+
+    }
+    else {
+        //Έξοδα
+        customerField.placeholder = 'Προμηθευτής'
+        if (phoneField) phoneField.placeholder = 'Αρ.Παραγγελίας'
+        typeSelect.value = '📉 Έξοδο';
+    }   
+    
+    if (headerCell) {
+        headerCell.textContent = currentTab === 'income' ? 'ΠΕΛΑΤΗΣ' : 'ΠΡΟΜΗΘΕΥΤΗΣ';
+    }
+
+    if (phoneHeader) {
+        phoneHeader.textContent = currentTab == 'income' ? 'ΤΗΛΕΦΩΝΟ' : 'ΑΡ.ΠΑΡΑΓΓΕΛΙΑΣ'
+    }
 }
 
 // RENDER TABLE + SEARCH 
@@ -85,17 +145,29 @@ const filteredEntries = entries.filter(entry => {
         const matchesSearch = entry.product.toLowerCase().includes(searchTerm) ||       
                               entry.customer.toLowerCase().includes(searchTerm);
         const matchesDate = !filterDate || entry.filterDate === filterDate;
-        return matchesSearch && matchesDate;
+        const matchesTab = currentTab === 'income' ? entry.type === '📈 Έσοδο' :
+                           currentTab === 'expense' ? entry.type === '📉 Έξοδο': true;
+        return matchesSearch && matchesDate &&matchesTab;
     });
+
     filteredEntries.forEach(entry => {
         const row = document.createElement('tr');
+        const amountDisplay = entry.downpayment ? `${entry.amount.toFixed(2)}€<br><small class="downpayment-info">Προκ.:${entry.downpayment.toFixed(2)}€</small>
+        <br><small class="remaining-info">Υπόλ: ${(entry.amount - entry.downpayment).toFixed(2)}€</small>` : `${entry.amount.toFixed(2)}€`;
+        const statusIcon = entry.paid ? '✅' : '❌';
         row.innerHTML = `
             <td>${entry.date}</td>
             <td>${entry.type}</td>
             <td>${entry.product}</td>
             <td>${entry.customer}</td>
-            <td>${entry.amount.toFixed(2)}€</td>
+            <td>${entry.phone || '-'}</td>
+            <td>${entry.notes || '-'}</td>
+            <td>${entry.method}</td> 
+            <td>${amountDisplay}</td>
             <td>
+                <button class="action-btn status-btn ${entry.paid ? 'paid' : 'unpaid'}"
+                onclick="togglePaid(${entry.id})"
+                title="Κατάσταση">${entry.paid ? '✅' : '❌'}</button>
                 <button class="action-btn" onclick="deleteEntry(${entry.id})" title="Διαγραφή">🗑️</button>
             </td>
         `;
@@ -136,20 +208,43 @@ function resetFilters() {
     if (dateFilter) dateFilter.value = '';
     renderTable();
 }
+//EVEN LISTENERS 
 
-// SEARCH /FILTER EVEN LISTENERS
+// SEARCH /FILTER 
 if (searchInput) searchInput.addEventListener('input', renderTable);
 if (dateFilter) dateFilter.addEventListener('change', renderTable);
 if (resetBtn) resetBtn.addEventListener('click', resetFilters);
 
+//FORM TYPE -> TYPE SYNC
+const entryTypeSelect = document.getElementById('entryType');
+
+if (entryTypeSelect) {
+    entryTypeSelect.addEventListener('change', function() {
+        const tab = this.value === '📈 Έσοδο' ? 'income' : 'expense';
+
+        switchTab(tab);
+    });
+}
+
+// TOGGLE PAID 
+function togglePaid(id) {
+    const entry = entries.find(e => e.id === id);
+    if (entry) {
+        entry.paid = !entry.paid;
+        saveData();
+        renderTable();
+    }
+}
+
 // SAVE DATA
 function saveData() {
-    localStorage.setItem('magshop_v1.2', JSON.stringify(entries));
+    localStorage.setItem('magshop_v2.0', JSON.stringify(entries));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
     showTamio();
     renderTable();
     updateStats();
-    console.log(`v1.2 ready! ${entries.length} entries loaded`);
+    updateTabDisplay();
+    console.log(`v2.0 ready! ${entries.length} entries loaded`);
 });
