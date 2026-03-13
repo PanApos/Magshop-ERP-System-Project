@@ -1,24 +1,38 @@
-/* -- 1. CSS Variables  -- */
+/* -- CSS Variables  -- */
 :root {
     --primary:#2c3e50;
-    --accent: #3489db;
     --success: #27ae60;
     --danger: #e74c3c;
-    --background: #eef2f3;
+    --accent: #3489db;
+    --warning:#f39c12;
+    --gold:#c49543;
+    --gold-light:#d0ab6b;
     --white: #ffffff;
-    --text:  #333333;
+
+    --bg-body: #eef2f3;
+    --text-main:  #333333;
+    --border-color: #eee;
+    --spacing-md:24px
 }
 
-/* -- 2.Βασικές Ρυθμίσεις -- */
+ /* -- Dark-mode -- 
+    body.dark-mode {
+        --bg-body:#000000;
+        --bg-card:#0a0a0a;
+        --text-main:#e0e0e0;
+        --accent:#c49543;
+    } */
+
+/* -- Βασικές Ρυθμίσεις -- */
 body {
     font-family: 'Segoe UI', Arial, sans-serif;
     margin: 0;
     padding: 0;
-    background: var(--backround);
-    color: var(--text);
+    background: var(--bg-body);
+    color: var(--text-main);
 }
 
-/* -- 3. Header -- */ 
+/* -- Header -- */ 
 .header-main {
     display: flex;
     justify-content: space-between;
@@ -27,13 +41,13 @@ body {
     border-bottom: 3px solid var(--accent); 
 }
 
-/* -- 4. Logo -- */
+/* -- Logo -- */
 .main-logo {
     height: 80px;
     width: auto;
 }
 
-/* -- 5. Navigation -- */
+/* -- Navigation -- */
 .nav-group {
     display: flex;
     gap: 15px;
@@ -55,7 +69,64 @@ body {
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 }
 
-/* -- 6. Main Container -- */
+/* -- Search bar -- */
+.search-bar{
+    display: flex;
+    gap: 16px;
+    padding: var(--spacing-md);
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.search-bar input{
+    flex: 1;
+    padding: 12px;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+}
+
+/* -- Stats */ 
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.stats-card {
+    padding: 24px;
+    border-radius: 12px;
+    color:var(--white);
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+.stats-grid--income { background:linear-gradient(135deg, var(--success), #2ecc71);}
+.stats-grid--expense { background:linear-gradient(135deg, var(--danger),#ff6b6b);}
+.stats-grid--balance { background: linear-gradient(135deg, var(--accent), #5dade2);}
+
+/* -- Form -- */
+
+.entry-form {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    gap: 16px;
+    padding: var(--spacing-md);
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn--success {
+    background: var(--success);
+    color: var(--white);
+    padding: 12px 24px;
+    border-radius: 8px;
+}
+
+
+
+/* -- Main Container -- */
 .container {
     max-width: 1200px;
     margin: 30px auto;
@@ -70,12 +141,12 @@ h1 {
     text-align: center;
 }
 
-/* -- 7. Sections (Κρυφά στην αρχή) -- */
+/* -- Sections (Κρυφά στην αρχή) -- */
 .app-section {
     display: none;
 }
 
-/* -- 8. Active Section -- */
+/* -- Active Section -- */
 .app-section.active {
     display: block;
 }

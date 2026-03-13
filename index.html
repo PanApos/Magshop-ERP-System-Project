@@ -2,7 +2,7 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <title>Magshop ERP v1.o</title>
+    <title>Magshop ERP v1.1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -18,10 +18,42 @@
             <button id="btn-paraggelies" class="btn-nav">📦 Παραγγελίες</button>
         </nav>
     </header>
-        <!-- ΤΑΜΕΙΟ Section -->
-         <section id="section-tamio" class="app-section">
+            <!-- ΤΑΜΕΙΟ Section -->
+        <section id="section-tamio" class="app-section">
             <h2>💰 Ταμείο </h2>
-         </section>
+        </section>
+
+        <div class="search-bar">
+            <input type="search" class="search-bar__input" placeholder="🔍 Αναζήτηση...">
+            <input type="date" class="search-bar__date">
+            <button class="btn btn--outline search-bar__btn">Reset</button>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stats-card stats-grid--income">
+                <h3>Έσοδα</h3>
+                <span class="stats-value">0.00€</span>
+            </div>
+            <div class="stats-card stats-grid--expense">
+                <h3>Έξοδα</h3>
+                <span class="stats-value">0.00€</span>
+            </div>
+            <div class="stats-card stats-grid--balance">
+                <h3>Υπόλοιπο</h3>
+                <span class="stats-value">0.00€</span>
+            </div>
+        </div>
+
+        <form class="entry-form">
+            <select class="entry-form__type">
+                <option>📈 Έσοδο</option>
+                <option>📉 Έξοδο</option>
+            </select>
+            <input type="text" class="entry-form__product" placeholder="Περιγραφή">
+            <input type="text" class="entry-form__customer" placeholder="Πελάτης">
+            <input type="number" class="entry-form__amount" placeholder="Ποσό">
+            <button type="submit" class="btn btn--success entry-form__btn">✨ Προσθήκη</button>
+        </form>
 
          <!-- ΠΑΡΑΓΓΕΛΙΕΣ Section -->
           <section id="section-paraggelies" class="app-section">
@@ -30,7 +62,7 @@
 
     <!-- Main Content-->
      <main class="container">
-        <h1>Magshop ERP V1.0</h1>
+        <h1>Magshop ERP V1.1</h1>
      </main>
 
 
