@@ -117,11 +117,6 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 🔹 **LinkedIn:** [\[Panagiotis Apostolelis\]](https://www.linkedin.com/in/panagiotis-apostolelis/)<br>
 🔹 **Figma:** [\[Παναγιώτης Αποστολέλης\]](https://www.figma.com/@PanApos)<br>
 
-# <<<<<<< HEAD
-
----
-
-> > > > > > > 4e3ec32c6d166370480cb4b1c304518ca3604759
 
 ## 🇬🇷 Ελληνική Έκδοση
 
