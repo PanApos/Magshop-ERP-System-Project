@@ -1,6 +1,7 @@
 # MagShop ERP System
 
 A modern Business ERP (Enterprise Resource Planning) System designed for small businesses. The project was developed starting from a blank canvas and evolved into a fully functional, dynamic web application.
+(Optimized for Desktop Experience)
 
 ---
 
