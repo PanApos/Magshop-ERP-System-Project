@@ -72,7 +72,24 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 
 ## Project Preview
 
-_Coming soon with screenshots_
+<img src="./images/finance.png" alt="finance" width="400" ><br>
+
+**More Screenshots**
+
+<details>
+  <summary><b>Click to view the full gallery / Κάντε κλικ για την πλήρη συλλογή </b></summary>
+  
+  <p align="center">
+    <img src="./images/full_project_figma.png" alt="full_project_figma_design" width="700"><br>
+    <img src="./images/finance.png" alt="finance" width="700"><br>
+    <img src="./images/finance_grid.png"  alt="finance_grid" width="700" ><br>
+    <img src="./images/orders.png" alt="orders" width="700" ><br>
+    <img src="./images/orders_grid.png" alt="orders_grid" width="700" ><br>
+    <img src="./images/wireframe-finance.png" alt="wireframe_finance" width="700" ><br>
+    <img src="./images/wireframe_orders.png" alt="wirefram_orders" width="700" ><br>
+
+  </p>
+</details>
 
 ---
 
@@ -99,12 +116,6 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 🔹 **Portfolio:** [\[apospan.com\]](https://apospan.com/)<br>
 🔹 **LinkedIn:** [\[Panagiotis Apostolelis\]](https://www.linkedin.com/in/panagiotis-apostolelis/)<br>
 🔹 **Figma:** [\[Παναγιώτης Αποστολέλης\]](https://www.figma.com/@PanApos)<br>
-
----
-
-_Built with 💙 and lots of ☕_
-
-_Last Updated: 2025_
 
 ---
 
@@ -185,12 +196,6 @@ _Last Updated: 2025_
 
 ---
 
-## Προεπισκόπηση Project
-
-_Έρχεται σύντομα με screenshots_
-
----
-
 ## Ιστορικό Εκδόσεων
 
 Δείτε το [CHANGELOG.md](CHANGELOG.md) για αναλυτικό ιστορικό εκδόσεων.
@@ -216,9 +221,5 @@ _Έρχεται σύντομα με screenshots_
 🔹 **Figma:** [\[Παναγιώτης Αποστολέλης\]](https://www.figma.com/@PanApos)<br>
 
 ---
-
-_Φτιαγμένο με 💙 και πολλή ☕_
-
-_Τελευταία Ενημέρωση: 2025_
 
 </details>
