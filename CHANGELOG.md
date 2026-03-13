@@ -8,18 +8,22 @@
 - Tabs: Ταμείο / Παραγγελίες
 - Responsive Search Bar
 - Stats Cards (Έσοδα, Έξοδα, Υπόλοιπο)
-- Entry Form grid layout
+- Entry Form
 
-## v1.2 (Upcoming) - LocalStorage
+## v1.2 (18-03-2026) - LocalStorage & Core ✓
 
-- Form submit
-- Data persistence
-- Array operations
+### ✨ New Features
 
-## v1.3 (Upcoming) - Table & Stats
+- Form submit + validation
+- LocalStorage
+- Dynamic table render/delete
+- Real-time stats calculations
+- Number safety (Chrome fix)
 
-- Dynamic table rendering
-- Real stats calculations
-- Delete functionality
+### 🐛 Bug Fixes
 
----
+- `toFixed()` Number corruption
+- `getAnimations → getElementById`
+- Safe parseFloat everywhere
+
+**Status:** Production ready ✓
