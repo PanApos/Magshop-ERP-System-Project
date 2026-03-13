@@ -105,7 +105,7 @@ body {
 }
 
 .stats-grid--income { background: linear-gradient(135deg, var(--success), #2ecc71); }
-.stats-grid--expense { background: linear-gradient(135deg, var(--danger), #e74c3c); }
+.stats-grid--expense { background: linear-gradient(135deg, var(--danger), #c0392b); }
 .stats-grid--balance { background: linear-gradient(135deg, var(--accent), #5dade2); }
 
 .stats-value { font-size: 32px; font-weight: 700; }

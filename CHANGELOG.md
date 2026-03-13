@@ -25,5 +25,7 @@
 - `toFixed()` Number corruption
 - `getAnimations → getElementById`
 - Safe parseFloat everywhere
+- CSS: expense card gradient
+- Table headers hardcoded html
 
 **Status:** Production ready ✓

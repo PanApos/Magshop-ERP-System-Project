@@ -47,6 +47,7 @@
 
         <!-- FORM -->
         <form class="entry-form">
+            <input id="entryDate" type="date" class="entry-form__date">
             <select id="entryType" class="entry-form__type">
                 <option>📈 Έσοδο</option>
                 <option>📉 Έξοδο</option>
@@ -61,7 +62,14 @@
         <div class="table-container">
             <table id="financeTable">
                 <thead>
-                    <tr id="tableHeaderRow"></tr>
+                    <tr id="tableHeaderRow">
+                        <th>ΗΜΕΡΟΜΗΝΙΑ</th>
+                        <th>ΤΥΠΟΣ</th>
+                        <th>ΠΕΡΙΓΡΑΦΗ</th>
+                        <th>ΠΕΛΑΤΗΣ</th>
+                        <th>ΠΟΣΟ</th>
+                        <th>ΕΝΕΡΓΕΙΕΣ</th>
+                    </tr>
                 </thead>
                 <tbody id="tableBody"></tbody>
             </table>

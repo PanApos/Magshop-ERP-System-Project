@@ -40,7 +40,7 @@ function addEntry() {
     const product = document.getElementById('product')?.value.trim();
     const customer = document.getElementById('customer')?.value.trim();
     const amount = parseFloat(document.getElementById('amount')?.value) || 0;
-    const dateStr = document.getElementById('dateFilter')?.value || new Date().toISOString().split('T')[0];
+    const dateStr = document.getElementById('entrydate')?.value || new Date().toISOString().split('T')[0];
 
     if (!product || amount <= 0) {
         alert ('⚠️ Περιγραφή και Ποσό απαραίτητα!');
@@ -67,7 +67,7 @@ function addEntry() {
 
 // CLEAR FORM FIELDS
 function clearForm() {
-    ['product', 'customer', 'amount'].forEach(id => {
+    ['product', 'customer', 'amount', 'entryDate'].forEach(id => {
         document.getElementById(id).value = '';
     });
 }
@@ -130,7 +130,7 @@ function deleteEntry(id) {
     }
 }
 
-// REST FILTERS
+// RESET FILTERS
 function resetFilters() {
     if (searchInput) searchInput.value = '';
     if (dateFilter) dateFilter.value = '';
