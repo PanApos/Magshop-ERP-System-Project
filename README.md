@@ -1,6 +1,6 @@
 # MagShop ERP System
 
-A modern Business ERP (Enterprise Resource Planning) System designed for small businesses. The project was developed starting from a blank canvas and evolved into a fully functional, dynamic web application.
+A modern Business ERP (Enterprise Resource Planning) System designed for small businesses. Developed from a blank canvas, evolving into a fully functional desktop web application.
 (Optimized for Desktop Experience)
 
 ---
@@ -9,7 +9,8 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 
 🔹 **Purpose:** Manage business finances and orders efficiently.<br>
 🔹 **Target Users:** Small business owners (Retail/Wholesale).<br>
-🔹 **Language:** Greek.
+🔹 **Language:** Greek.<br>
+🔹 **Platform:** Desktop (Future: Electron.js)
 
 ---
 
@@ -27,8 +28,9 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 ## Design System & UI/UX
 
 🔹 **Theme:** Clean, professional business aesthetic.<br>
-🔹 **Color Palette:** Navy Blue primary (`#2c3e50`) with accent blue (`#3489db`), success green (`#27ae60`), and danger red (`#e74c3c`).<br>
+🔹 **Color Palette:** Navy Blue primary (`#2c3e50`) with accent blue (`#3498db`), success green (`#27ae60`), and danger red (`#e74c3c`).<br>
 🔹 **Typography:** Segoe UI / Arial for maximum readability.<br>
+🔹 **Design Tool:** Figma (Wireframes & Final Design before coding)
 
 ---
 
@@ -48,47 +50,46 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 
 ---
 
-## Current Features (v1.0)
+## Current Features (v1.2)
 
-🔹 Basic HTML5 structure with semantic tags.<br>
-🔹 Navigation between Finance and Orders sections.<br>
-🔹 Section show/hide functionality using JavaScript.<br>
-🔹 Clean, modern UI design with CSS Variables.
+🔹 HTML5 semantic structure & navigation between modules.<br>
+🔹 Income & Expense entry form with date, type, description, customer, amount.<br>
+🔹 LocalStorage data persistence (data survives page refresh).<br>
+🔹 Dynamic table rendering with real-time delete functionality.<br>
+🔹 Real-time financial statistics (Income / Expense / Balance).<br>
+🔹 Search by description or customer name.<br>
+🔹 Date filter & reset functionality.<br>
+🔹 CSS Variables design system with professional UI.
 
 ---
 
-## Upcoming Features
+## Roadmap
 
-🔹 **v1.1** - Income/Expense Input Forms<br>
-🔹 **v1.2** - LocalStorage Data Persistence<br>
-🔹 **v1.3** - Tables & Financial Statistics<br>
 🔹 **v2.0** - Tabs for Income/Expense switching<br>
-🔹 **v2.1** - Search & Date Filters<br>
 🔹 **v3.0** - Order Management Module<br>
-🔹 **v3.1** - Edit & Delete functionality<br>
-🔹 **v4.0** - Backup & Export (JSON/CSV)<br>
-🔹 **v5.0** - Dark Mode & Print Styles
+🔹 **v4.0** - Edit functionality<br>
+🔹 **v5.0** - Backup/Export (JSON/Excel) + Dark Mode<br>
+🔹 **v6.0** - Electron.js Desktop Application
 
 ---
 
 ## Project Preview
 
-<img src="./Images/finance.png" alt="finance" width="400" ><br>
+<img src="./Images/finance.png" alt="finance" width="400"><br>
 
 **More Screenshots**
 
 <details>
-  <summary><b>Click to view the full gallery / Κάντε κλικ για την πλήρη συλλογή </b></summary>
+  <summary><b>Click to view the full gallery</b></summary>
   
   <p align="center">
     <img src="./Images/full_project_figma.png" alt="full_project_figma_design" width="700"><br>
     <img src="./Images/finance.png" alt="finance" width="700"><br>
-    <img src="./Images/finance_grid.png"  alt="finance_grid" width="700" ><br>
-    <img src="./Images/orders.png" alt="orders" width="700" ><br>
-    <img src="./Images/orders_grid.png" alt="orders_grid" width="700" ><br>
-    <img src="./Images/wireframe-finance.png" alt="wireframe_finance" width="700" ><br>
-    <img src="./Images/wireframe_orders.png" alt="wirefram_orders" width="700" ><br>
-
+    <img src="./Images/finance_grid.png" alt="finance_grid" width="700"><br>
+    <img src="./Images/orders.png" alt="orders" width="700"><br>
+    <img src="./Images/orders_grid.png" alt="orders_grid" width="700"><br>
+    <img src="./Images/wireframe-finance.png" alt="wireframe_finance" width="700"><br>
+    <img src="./Images/wireframe_orders.png" alt="wireframe_orders" width="700"><br>
   </p>
 </details>
 
@@ -108,15 +109,17 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 🔹 **Best Practices:** Suggestions for clean code, naming conventions, and structure.<br>
 🔹 **Problem Solving:** Debug assistance and optimization tips.
 
-> **Note:** The key principle is **"Understand before using"** - AI helps learn faster, but doesn't replace the developer's understanding.
+> **Note:** The key principle is **"Understand before using"** — AI helps learn faster, but doesn't replace the developer's understanding.
 
 ---
 
 ## Links
 
-🔹 **Portfolio:** [\[apospan.com\]](https://apospan.com/)<br>
-🔹 **LinkedIn:** [\[Panagiotis Apostolelis\]](https://www.linkedin.com/in/panagiotis-apostolelis/)<br>
-🔹 **Figma:** [\[Παναγιώτης Αποστολέλης\]](https://www.figma.com/@PanApos)<br>
+🔹 **Portfolio:** [apospan.com](https://apospan.com/)<br>
+🔹 **LinkedIn:** [Panagiotis Apostolelis](https://www.linkedin.com/in/panagiotis-apostolelis/)<br>
+🔹 **Figma:** [Παναγιώτης Αποστολέλης](https://www.figma.com/@PanApos)<br>
+
+---
 
 ## 🇬🇷 Ελληνική Έκδοση
 
@@ -125,7 +128,8 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 
 # MagShop ERP System
 
-Ένα σύγχρονο Σύστημα ERP (Enterprise Resource Planning) σχεδιασμένο για μικρές επιχειρήσεις. Το project αναπτύχθηκε ξεκινώντας από λευκό καμβά και εξελίχθηκε σε μια πλήρως λειτουργική, δυναμική εφαρμογή.
+Ένα σύγχρονο Σύστημα ERP σχεδιασμένο για μικρές επιχειρήσεις. Αναπτύχθηκε από μηδενική βάση και εξελίχθηκε σε πλήρως λειτουργική desktop εφαρμογή.
+(Βελτιστοποιημένο για Desktop Εμπειρία)
 
 ---
 
@@ -133,7 +137,8 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 
 🔹 **Σκοπός:** Αποτελεσματική διαχείριση οικονομικών και παραγγελιών.<br>
 🔹 **Στόχος:** Μικρές επιχειρήσεις (Λιανική/Χονδρική).<br>
-🔹 **Γλώσσα:** Ελληνικά.
+🔹 **Γλώσσα:** Ελληνικά.<br>
+🔹 **Πλατφόρμα:** Desktop (Μελλοντικά: Electron.js)
 
 ---
 
@@ -151,73 +156,72 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 ## Design System & UI/UX
 
 🔹 **Θέμα:** Καθαρή, επαγγελματική αισθητική.<br>
-🔹 **Χρωματική Παλέτα:** Navy Blue βασικό (`#2c3e50`) με accent blue (`#3489db`), success green (`#27ae60`) και danger red (`#e74c3c`).<br>
+🔹 **Χρωματική Παλέτα:** Navy Blue (`#2c3e50`), accent blue (`#3498db`), success green (`#27ae60`), danger red (`#e74c3c`).<br>
 🔹 **Τυπογραφία:** Segoe UI / Arial για μέγιστη αναγνωσιμότητα.<br>
+🔹 **Εργαλείο Σχεδιασμού:** Figma (Wireframes & Final Design πριν τον κώδικα)
 
 ---
 
-## Ροή Εργασίας Project
+## Ροή Εργασίας
 
 ### 1. Φάση Ανάπτυξης
 
-🔹 **Ανάπτυξη βάσει Εκδόσεων:** Κάθε feature αναπτύσσεται ξεχωριστά για καλύτερη παρακολούθηση και εύκολη επιστροφή.<br>
-🔹 **Χειροκίνητη Κωδικοποίηση:** Κάθε γραμμή κώδικα γράφεται και κατανοείται (όχι copy-paste χωρίς κατανόηση).<br>
-🔹 **AI ως Βοηθός Μάθησης:** Το AI χρησιμοποιείται ως "Senior Μέντορας" για εξηγήσεις και best practices, όχι για τυφλή δημιουργία κώδικα.
+🔹 **Ανάπτυξη βάσει Εκδόσεων:** Κάθε feature αναπτύσσεται ξεχωριστά.<br>
+🔹 **Χειροκίνητη Κωδικοποίηση:** Κάθε γραμμή κώδικα γράφεται και κατανοείται.<br>
+🔹 **AI ως Βοηθός Μάθησης:** Χρησιμοποιείται ως "Senior Μέντορας", όχι για αυτόματη παραγωγή κώδικα.
 
 ### 2. Δοκιμή & Ανάπτυξη
 
 🔹 **Live Server:** Τοπική ανάπτυξη με VS Code Live Server.<br>
-🔹 **Δοκιμή Browser:** Chrome/Firefox για συμβατότητα μεταξύ browsers.<br>
-🔹 **GitHub Hosting:** Repository για ιστορικό εκδόσεων και συνεργασία.
+🔹 **Browser Testing:** Chrome/Firefox.<br>
+🔹 **GitHub:** Repository για ιστορικό εκδόσεων.
 
 ---
 
-## Τρέχοντα Features (v1.0)
+## Τρέχοντα Features (v1.2)
 
-🔹 Βασική HTML5 δομή με σημασιολογικά tags.<br>
-🔹 Πλοήγηση μεταξύ Ταμείου και Παραγγελιών.<br>
-🔹 Εμφάνιση/Απόκρυψη ενοτήτων με JavaScript.<br>
-🔹 Καθαρό, μοντέρνο UI design με CSS Variables.
+🔹 Semantic HTML5 δομή & πλοήγηση μεταξύ modules.<br>
+🔹 Φόρμα καταχώρησης Εσόδων/Εξόδων με ημερομηνία, τύπο, περιγραφή, πελάτη, ποσό.<br>
+🔹 LocalStorage persistence (τα δεδομένα παραμένουν μετά το refresh).<br>
+🔹 Dynamic table rendering με delete functionality.<br>
+🔹 Real-time οικονομικά στατιστικά (Έσοδα / Έξοδα / Υπόλοιπο).<br>
+🔹 Αναζήτηση βάσει περιγραφής ή πελάτη.<br>
+🔹 Φίλτρο ημερομηνίας & reset.<br>
+🔹 CSS Variables design system με επαγγελματικό UI.
 
 ---
 
-## Μελλοντικά Features
+## Roadmap
 
-🔹 **v1.1** - Φόρμες Εισαγωγής Εσόδων/Εξόδων<br>
-🔹 **v1.2** - Αποθήκευση LocalStorage<br>
-🔹 **v1.3** - Πίνακες & Οικονομικά Στατιστικά<br>
-🔹 **v2.0** - Tabs για Εσοδα/Εξοδα<br>
-🔹 **v2.1** - Αναζήτηση & Φίλτρα Ημερομηνίας<br>
-🔹 **v3.0** - Module Διαχείρισης Παραγγελιών<br>
-🔹 **v3.1** - Λειτουργίες Επεξεργασίας & Διαγραφής<br>
-🔹 **v4.0** - Backup & Export (JSON/CSV)<br>
-🔹 **v5.0** - Dark Mode & Στυλ Εκτύπωσης
+🔹 **v2.0** - Tabs Εσόδων/Εξόδων<br>
+🔹 **v3.0** - Module Παραγγελιών<br>
+🔹 **v4.0** - Λειτουργία Επεξεργασίας<br>
+🔹 **v5.0** - Backup/Export (JSON/Excel) + Dark Mode<br>
+🔹 **v6.0** - Electron.js Desktop Εφαρμογή
 
 ---
 
 ## Ιστορικό Εκδόσεων
 
-Δείτε το [CHANGELOG.md](CHANGELOG.md) για αναλυτικό ιστορικό εκδόσεων.
+Δείτε το [CHANGELOG.md](CHANGELOG.md) για αναλυτικό ιστορικό.
 
 ---
 
 ## AI-Assisted Engineering
 
-Αυτό το project χρησιμοποιεί **AI ως Εργαλείο Μάθησης** ακολουθώντας τη μεθοδολογία **AI-Augmentation**:
+🔹 **Εξηγήσεις Κώδικα:** Το AI εξηγεί κάθε γραμμή για κατανόηση.<br>
+🔹 **Best Practices:** Προτάσεις για καθαρό κώδικα και δομή.<br>
+🔹 **Επίλυση Προβλημάτων:** Βοήθεια στο debugging.
 
-🔹 **Εξηγήσεις Κώδικα:** Το AI εξηγεί κάθε γραμμή κώδικα για κατανόηση.<br>
-🔹 **Best Practices:** Προτάσεις για καθαρό κώδικα, naming conventions και δομή.<br>
-🔹 **Επίλυση Προβλημάτων:** Βοήθεια στο debugging και tips βελτιστοποίησης.
-
-> **Σημείωση:** Η βασική αρχή είναι **"Κατανόησε πριν χρησιμοποιήσεις"** - Το AI βοηθά να μάθεις γρηγορότερα, αλλά δεν αντικαθιστά την κατανόηση του developer.
+> **Αρχή:** "Κατανόησε πριν χρησιμοποιήσεις" — το AI βοηθά να μάθεις γρηγορότερα, δεν αντικαθιστά την κατανόηση.
 
 ---
 
 ## Σύνδεσμοι
 
-🔹 **Portfolio:** [\[apospan.com\]](https://apospan.com/)<br>
-🔹 **LinkedIn:** [\[Panagiotis Apostolelis\]](https://www.linkedin.com/in/panagiotis-apostolelis/)<br>
-🔹 **Figma:** [\[Παναγιώτης Αποστολέλης\]](https://www.figma.com/@PanApos)<br>
+🔹 **Portfolio:** [apospan.com](https://apospan.com/)<br>
+🔹 **LinkedIn:** [Panagiotis Apostolelis](https://www.linkedin.com/in/panagiotis-apostolelis/)<br>
+🔹 **Figma:** [Παναγιώτης Αποστολέλης](https://www.figma.com/@PanApos)
 
 ---
 
