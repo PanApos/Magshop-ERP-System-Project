@@ -2,7 +2,7 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <title>Magshop ERP v2.0</title>
+    <title>Magshop ERP v3.0</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -56,9 +56,9 @@
                 </select>
                 <input id="product" type="text" class="entry-form__product" placeholder="Περιγραφή">
                 <input id="customer" type="text" class="entry-form__customer" placeholder="Πελάτης">
-                <input id="phone" type="text" class="entry-form__customer" placeholder="Τηλέφωνο">
+                <input id="phone" type="tel" inputmode="numeric" pattern="[0-9]*" placeholder="Τηλέφωνο">
                 <input id="downpayment" type="number" class="entry-form__amount" placeholder="Προκαταβολή (€)">
-                <input id="notes" type="text" class="entry-form__notes" placeholder="Σημειώσεις"></input>
+                <input id="notes" type="text" class="entry-form__notes" placeholder="Σημειώσεις">
                 <select id="method" class="entry-form__type">
                     <option>💵 Μετρητά </option> 
                     <option>💳 Κάρτα </option> 
@@ -95,8 +95,44 @@
             </div>
         </section>
         <!-- ΠΑΡΑΓΓΕΛΙΕΣ Section -->
-        <section id="section-paraggelies" class="app-section">
-            <h2>📦 Παραγγελίες </h2>
+        <section id="section-paraggelies" class="app-section"> 
+            <!-- SEARCH BAR ΓΙΑ ΠΑΡΑΓΓΕΛΙΣ -->
+            <div class="search-bar">
+                <input type="search" id="searchOrderInput" class="search-bar__input" placeholder="🔍 Αναζήτηση...">
+                <button id="resetOrderBtn" class="btn btn--outline search-bar__btn" onclick="resetOrderFilters()">Reset</button>
+            </div>
+
+            <!-- FORM ΠΑΡΑΓΓΕΛΙΑΣ-->
+             <form class="entry-form">
+                <input id="orderDate" type="date" class="entry-form__date">
+                <input id="deliveryDate" type="date" class="entry-form__date">
+                <input id="orderId" type="text" class="entry-form__product" placeholder="Αρ. Παραγγελίας">
+                <input id="supplier" type="text" class="entry-form__customer" placeholder="Προμηθευτής">
+                <input id="orderDesc" type="text" class="entry-form__product" placeholder="Περιγραφή">
+                <input id="orderAmount" type="number" class="entry-form__amount" placeholder="Ποσό (€)">
+                <input id="orderNotes" type="text" class="entry-form__notes" placeholder="Σημειώσεις">
+
+                <button type="button" onclick="addOrder()" class="btn btn--success entry-form__btn">Καταχώρηση</button>
+             </form>
+
+            <!--TABLE ΠΑΡΑΓΓΕΛΙΩΝ-->
+            <div class="table-container">
+                <table id="ordersTable">
+                    <thead>
+                        <tr>
+                            <th>ΗΜ.ΠΑΡΑΓΓΕΛΙΑΣ</th>
+                            <th>ΗΜ.ΠΑΡΑΔΟΣΗΣ</th>
+                            <th>ΑΡ.ΠΑΡΑΓΓΕΛΙΑΣ</th>
+                            <th>ΠΡΟΜΗΘΕΥΤΗΣ</th>
+                            <th>ΠΟΣΟ (€)</th>
+                            <th>ΣΗΜΕΙΩΣΕΙΣ</th>
+                            <th>ΚΑΤΑΣΤΑΣΗ</th>
+                            <th>ΕΝΕΡΓΕΙΕΣ</th>
+                        </tr>
+                    </thead>
+                    <tbody id="ordersTableBody"></tbody>
+                </table>
+            </div>
         </section>
     </div>
 

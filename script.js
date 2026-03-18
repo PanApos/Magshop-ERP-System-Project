@@ -1,14 +1,17 @@
-// MAGSHOP ERP v2.0
+// MAGSHOP ERP v3.0
 
-console.log('Magshop ERP v2.0 loaded');
+console.log('Magshop ERP v3.0 loaded');
 
-let entries = JSON.parse(localStorage.getItem('magshop_v2.0') || '[]');
+let entries = JSON.parse(localStorage.getItem('magshop_v3.0') || '[]');
+let orders = JSON.parse(localStorage.getItem('magshop_v3.0_orders') || '[]');
 
 //DOM ELEMENTS
 const btnTamio = document.getElementById('btn-tamio');
 const btnParaggelies = document.getElementById('btn-paraggelies');
 const sectionTamio = document.getElementById('financeContent');
 const sectionParaggelies = document.getElementById('section-paraggelies');
+const searchOrderInput = document.getElementById('searchOrderInput');
+const ordersTableBody = document.getElementById ('ordersTableBody');
 
 //SEARCH BAR + FILTER
 const searchInput = document.getElementById('searchInput');
@@ -28,9 +31,10 @@ function showTamio() {
 function showParaggelies() {
     sectionTamio.classList.remove('active');
     sectionParaggelies.classList.add('active');
+    renderOrdersTable();
 }
 
-// EVENT LISTENERS 
+// NAVIGATION LISTENERS 
 btnTamio?.addEventListener('click', showTamio);
 btnParaggelies?.addEventListener('click', showParaggelies);
 
@@ -61,7 +65,7 @@ function addEntry() {
         notes,
         method,
         amount,
-        paid:false,
+        paid:downpayment >0 ? false : true,
         date: new Date(dateStr).toLocaleDateString('el-GR'),
         filterDate:dateStr
     }
@@ -74,12 +78,54 @@ function addEntry() {
     console.log('Entry added', entry)
 }
 
+// ADD ORDER 
+function addOrder() {
+    const orderDateStr = document.getElementById('orderDate')?.value || new Date().toISOString().split('T')[0];
+    const deliveryDateStr = document.getElementById('deliveryDate')?.value;
+    const orderId= document.getElementById ('orderId')?.value.trim();
+    const supplier = document.getElementById('supplier')?.value.trim();
+    const orderDesc = document.getElementById('orderDesc')?.value.trim();
+    const orderAmount = parseFloat(document.getElementById('orderAmount')?.value) || 0;
+    const orderNotes = document.getElementById('orderNotes')?.value.trim();
+
+    if (!supplier || !orderDesc || orderAmount <= 0) {
+        alert('⚠️ Προμηθευτής, Περιγραφή και Ποσό είναι απαραίτητα!');
+        return;
+    }
+
+    //ΔΗΜΙΟΥΡΓΙΑ ΠΑΡΑΓΓΕΛΙΑΣ
+    const order ={
+        id: Date.now(),
+        orderDate: new Date(orderDateStr).toLocaleDateString('el-GR'),
+        filterOrderDate: orderDateStr,
+        deliveryDate: deliveryDateStr ? new Date(deliveryDateStr).toLocaleDateString('el-GR') : '-',
+        orderId: orderId || '-',
+        supplier,
+        orderDesc,
+        orderAmount,
+        orderNotes: orderNotes || '-',
+        status: false 
+    };
+
+    orders.unshift(order);
+    saveOrdersData();
+    clearOrderForm();
+    renderOrdersTable();
+    console.log('Order added', order);
+}
 // CLEAR FORM FIELDS
 function clearForm() {
     ['product', 'customer', 'amount', 'entryDate', 'phone', 'downpayment', 'notes'].forEach(id => {
         document.getElementById(id).value = '';
     });
     document.getElementById('method').selectedIndex = 0;
+}
+
+function clearOrderForm() {
+    ['orderDate', 'deliveryDate', 'orderId', 'supplier', 'orderDesc', 'orderAmount', 'orderNotes'].forEach(id => {
+        const element = document.getElementById(id);
+        if (element) element.value = '';
+    });
 }
 
 // TABS INCOME/EXPENSE 
@@ -105,9 +151,11 @@ function switchTab(tab) {
 function updateTabDisplay() {
     const customerField = document.getElementById('customer');
     const phoneField = document.getElementById('phone');
+    const phoneHeader = document.getElementById('phoneHeader')
     const typeSelect = document.getElementById('entryType');
     const headerCell = document.querySelector('#tableHeaderRow th:nth-child(4)');
-    const phoneHeader = document.getElementById('phoneHeader')
+   
+    
 
     if (currentTab === 'income') {
         //Έσοδα
@@ -175,6 +223,48 @@ const filteredEntries = entries.filter(entry => {
     });
 }
 
+function renderOrdersTable() {
+    if (!ordersTableBody) return; //Ασφάλεια
+
+    const searchTerm = searchOrderInput ? searchOrderInput.value.toLowerCase() : '';
+    ordersTableBody.innerHTML= '';
+
+    const filteredOrders = orders.filter(order => {
+        const matchesSearch =
+            (order.orderId && order.orderId.toLowerCase().includes(searchTerm)) ||
+            (order.supplier && order.supplier.toLowerCase().includes(searchTerm)) ||
+            (order.orderDesc && order.orderDesc.toLowerCase().includes(searchTerm));
+            return matchesSearch;
+    });
+
+    filteredOrders.forEach(order => {
+        const row = document.createElement('tr');
+        const statusClass = order.status ? 'paid' : 'unpaid';
+        const statusIcon = order.status ? '✅' : '⏳';
+        const statusText = order.status ? 'Παραλήφθη' : 'Εκκρεμεί';
+
+        row.innerHTML = `
+        <td>${order.orderDate}</td>
+        <td>${order.deliveryDate}</td>
+        <td>${order.orderId}</td>
+        <td>${order.supplier}</td>
+        <td>${order.orderAmount.toFixed(2)}€</td>
+        <td>${order.orderNotes}</td>
+        <td>
+            <button class="action-btn status-btn ${statusClass}"
+            onclick="toggleOrderStatus(${order.id})"
+            title="Αλλαγή Κατάστασης">
+            ${statusIcon} ${statusText} 
+            </button>
+        </td>
+        <td>
+            <button class="action-btn" onclick="deleteOrder(${order.id})" title="Διαγραφή">🗑️</button>
+        </td>
+        `;
+        ordersTableBody.appendChild(row);
+    });
+}
+
 // UPDATE STATS 
 function updateStats() {
     const income = entries
@@ -202,18 +292,33 @@ function deleteEntry(id) {
     }
 }
 
+function deleteOrder(id) {
+    if (confirm('Είστε σίγουροι για τη διαγραφή αυτής της παραγγελίας;')) {
+        orders = orders.filter(o => o.id !== id);
+        saveOrdersData();
+        renderOrdersTable();
+    }
+}
+
 // RESET FILTERS
 function resetFilters() {
     if (searchInput) searchInput.value = '';
     if (dateFilter) dateFilter.value = '';
     renderTable();
 }
-//EVEN LISTENERS 
+
+function resetOrderFilters() {
+    if (searchOrderInput) searchOrderInput.value = '';
+    renderOrdersTable();
+}
+
+// SEARCH / FILTER / INPUT EVENT LISTENERS 
 
 // SEARCH /FILTER 
 if (searchInput) searchInput.addEventListener('input', renderTable);
 if (dateFilter) dateFilter.addEventListener('change', renderTable);
 if (resetBtn) resetBtn.addEventListener('click', resetFilters);
+if (searchOrderInput) searchOrderInput.addEventListener('input', renderOrdersTable);
 
 //FORM TYPE -> TYPE SYNC
 const entryTypeSelect = document.getElementById('entryType');
@@ -223,6 +328,14 @@ if (entryTypeSelect) {
         const tab = this.value === '📈 Έσοδο' ? 'income' : 'expense';
 
         switchTab(tab);
+    });
+}
+
+// PHONE — ΜΟΝΟ ΑΡΙΘΜΟΙ
+const phoneInput = document.getElementById('phone');
+if (phoneInput) {
+    phoneInput.addEventListener('input', function() {
+        this.value = this.value.replace(/[^0-9]/g, '');
     });
 }
 
@@ -236,9 +349,23 @@ function togglePaid(id) {
     }
 }
 
+// TOGGLE ORDER STATUS
+function toggleOrderStatus(id) {
+    const order = orders.find(o => o.id === id);
+    if (order) {
+        order.status = !order.status;
+        saveOrdersData();
+        renderOrdersTable();
+    }
+}
+
 // SAVE DATA
 function saveData() {
-    localStorage.setItem('magshop_v2.0', JSON.stringify(entries));
+    localStorage.setItem('magshop_v3.0', JSON.stringify(entries));
+}
+
+function saveOrdersData() {
+    localStorage.setItem('magshop_v3.0_orders', JSON.stringify(orders));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -246,5 +373,5 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTable();
     updateStats();
     updateTabDisplay();
-    console.log(`v2.0 ready! ${entries.length} entries loaded`);
+    console.log(`v3.0 ready! Entries: ${entries.length} | Orders: ${orders.length}`);
 });
