@@ -1,4 +1,4 @@
-/* Magshop ERP v3.0  */
+/* Magshop ERP v3.1  */
 
 /* CSS Variables */
 :root {
@@ -21,44 +21,81 @@ body {
   padding: 0;
   background: var(--bg-body);
   color: var(--text-main);
+  min-width: 1280px;
 }
+
+/*SIDEBAR DASHBOARD */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left:0;
+  width: 250px;
+  height: 100vh;
+  background:var(--primary);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  box-sizing: border-box;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.sidebar-header {
+  text-align: center;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-logo {
+  width: 200px;
+  height: auto;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.nav-btn {
+  background: transparent;
+  color: rgba(255,255,255,0.7);
+  border: none;
+  padding: 14px 20px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.nav-btn:hover {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  transform: translateX(5px);
+}
+
+.nav-btn.active {
+  background-color: var(--accent);
+  color: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+  transform: translateX(5px);
+}
+
+
 
 /* MAIN CONTENT */
 .main-wrapper {
-  max-width: 95%;
-  margin: 0 auto;
-  padding: 20px 40px;
-}
-
-
-/* HEADER */
-.header-main {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px 48px;
-  background: var(--bg-card);
-  border-bottom: 3px solid var(--accent);
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-
-.main-logo { height: 70px; }
-
-.nav-group { display: flex; gap: 16px; }
-
-.btn-nav {
-  background: linear-gradient(135deg, var(--accent), var(--primary));
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.btn-nav:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(52,152,219,0.4);
+  margin-left: 250px;
+  padding: 30px 50px;
+  min-height: 100vh;
+  background: var(--bg-body);
 }
 
 /* SEARCH BAR */
@@ -68,13 +105,13 @@ body {
   padding: 16px 32px;
   background: #f8f9fa;
   border-radius: 12px;
-  margin: 32px 0;
+  margin: 0 0 24px 0;
 }
 
 .search-bar input {
   flex: 1;
   padding: 12px;
-  border: 2px solid #e9ecef;
+  border: 2px solid var(--border-color);
   border-radius: 8px;
 }
 
@@ -117,24 +154,50 @@ body {
   outline: 3px solid rgba(255,255,255,0.6);
 }
 
-/* FORM */
+/* ΤΑΜΕΙΟ FORM */
 .entry-form {
   display: flex;
-  gap: 24px;
-  padding: 32px;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px;
   background: white;
   border-radius: 12px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-  margin: 32px 0;
-  align-items: end;
+  margin: 24px 0px;
 }
 
-.entry-form input, .entry-form select {
-  flex: 1;
-  padding: 12px;
-  border: 2px solid #e9ecef;
-  border-radius: 8px;
+.form-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  width: 100%;
 }
+
+.form-row input,
+.form-row select {
+  flex: 1;
+  padding: 10px 8px;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  font-size: 13px;
+  min-width: 0;
+  transition: border-color 0.2s ease;
+}
+
+.form-row input:focus,
+.form-row select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.form-row #product {
+  flex: 2; /* Περιγραφή μεγαλύτερη */
+}
+
+.form-row #notes {
+  flex: 2; /*Σημειώσεις μεγαλύτερες */
+}
+
 
 .btn--success {
   background: var(--success);
@@ -146,6 +209,39 @@ body {
   cursor: pointer;
   white-space: nowrap;
 }
+
+/* ΠΑΡΑΓΓΕΛΙΕΣ FORM */
+#section-paraggelies .entry-form {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  padding: 16px 20px;
+}
+
+#section-paraggelies .entry-form input,
+#section-paraggelies .entry-form select {
+  padding: 10px 8px;
+  font-size: 13px;
+  min-width: 0;
+  flex: 1;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  transition: border-color 0.2s ease;
+}
+
+#section-paraggelies .entry-form input:focus,
+#section-paraggelies .entry-form select:focus {
+  border-color: var(--accent);
+  outline: none;
+}
+
+
+
+
+#section-paraggelies #orderDesc {
+  flex:2; /* Περιγραφή μεγαλύτερη */
+}
+
 
 
 /* TABS ΕΣΟΔΑ/ΕΞΟΔΑ */
@@ -226,20 +322,25 @@ tr:hover { background: rgba(52,152,219,0.04); }
 .action-btn {
   background: none;
   border: none;
-  font-size: 18px;
+  font-size: 15px;
   cursor: pointer;
   padding: 8px;
   border-radius: 6px;
-  transition: all 0.2s;
+  transition: background 0.15s ease, opacity 0.15s ease;  /* πιο subtle */
 }
 
 .action-btn:hover {
+  opacity: 0.85;        /* αντί για scale */
   background: var(--danger);
   color: white;
-  transform: scale(1.1);
 }
-.action-btn:first-of-type:hover {
-  background: var(--success);
+
+.action-btn.status-btn:hover {
+  background: var(--success);  
+}
+
+.action-btn.delete-btn:hover {
+  background: var(--danger);   
 }
 
 /* SECTIONS */

@@ -54,6 +54,40 @@
 
 ---
 
+## v3.0 (18-03-2026) - Orders Module
+
+### ✨ New Features
+- Ξεχωριστό orders[] array & localStorage key 'magshop_v3.0_orders'
+- Φόρμα παραγγελιών: Ημ.Παραγγελίας, Ημ.Παράδοσης, Αρ.Παραγγελίας, Προμηθευτής, Περιγραφή, Ποσό, Σημειώσεις
+- Table παραγγελιών με toggle status (⏳ Εκκρεμεί / ✅ Παραλήφθη)
+- Search & Date filter για παραγγελίες
+- Delete παραγγελίας
+- paid: auto-true όταν δεν υπάρχει προκαταβολή
+- Phone input: μόνο αριθμοί (regex replace)
+
+### 🐛 Bug Fixes
+- parseFloat || 0 για ασφαλή αριθμητικές πράξεις
+- Event listener εκτός function (phoneInput)
+
+## v3.1 (18-03-2026) - Sidebar Dashboard Layout
+
+### ✨ New Features
+- Sidebar navigation (fixed, 250px, 100vh)
+- Active state στα nav buttons (JS classList)
+- 2-γραμμή φόρμα Ταμείου (form-row layout)
+- CSS Specificity override για Παραγγελίες form
+- Focus states σε όλα τα inputs
+- min-width: 1280px για desktop-first
+- Date filter στις Παραγγελίες
+- localStorage key: 'magshop_v3.1'
+
+### 🐛 Bug Fixes
+- flex-direction override για Orders form
+- min-width: 0 στα form inputs
+- orderAmount toFixed crash → parseFloat || 0
+
+---
+
 ## 🇬🇷 Ελληνική Έκδοση
 
 <details>
@@ -111,4 +145,37 @@
 - Syntax options του method select
 - textarea → input για σημειώσεις
 
+## v3.0 (18-03-2026) - Module Παραγγελιών
+
+### ✨ Νέες Λειτουργίες
+- Ξεχωριστό orders[] array & localStorage 'magshop_v3.0_orders'
+- Φόρμα παραγγελιών με όλα τα πεδία
+- Toggle status (⏳ Εκκρεμεί / ✅ Παραλήφθη)
+- Search & Date filter
+- Διαγραφή παραγγελίας
+- Auto paid=true χωρίς προκαταβολή
+- Phone: μόνο αριθμοί
+
+### 🐛 Διορθώσεις
+- parseFloat || 0 για ασφάλεια
+- Event listener εκτός function
+
+## v3.1 (18-03-2026) - Sidebar Dashboard Layout
+
+### ✨ Νέες Λειτουργίες
+- Sidebar πλοήγηση (fixed, 250px, 100vh)
+- Active state στα nav buttons
+- 2-γραμμή φόρμα Ταμείου
+- CSS Specificity override για Παραγγελίες
+- Focus states στα inputs
+- min-width: 1280px desktop-first
+- Date filter στις Παραγγελίες
+- localStorage key: 'magshop_v3.1'
+
+### 🐛 Διορθώσεις
+- flex-direction override για Orders form
+- min-width: 0 στα inputs
+- orderAmount toFixed crash fix
+
+---
 </details>

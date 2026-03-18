@@ -2,22 +2,22 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <title>Magshop ERP v3.0</title>
+    <title>Magshop ERP v3.1</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="header-main">
-        <div class="logo-group">
-            <img src="Logo/Magshop-GRADIENT-transp-02-02.png" alt="Magshop logo" class="main-logo">
+    <!-- SIDEBAR  DASHBOARD -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <img src="Logo/Magshop-GRADIENT-transp-02-02.png" alt="Magshop Logo" class="sidebar-logo">
         </div>
 
-        <nav class="nav-group">
-            <button id="btn-tamio" class="btn-nav">💰 Ταμείο </button>
-            <button id="btn-paraggelies" class="btn-nav">📦 Παραγγελίες</button>
+        <nav class="sidebar-nav">
+            <button id="btn-tamio" class="nav-btn active">💰 Ταμείο</button>
+            <button id="btn-paraggelies" class="nav-btn">📦 Παραγγελίες</button>
         </nav>
-    </header>
+    </aside>
 
     <!--MAIN CONTENT-->
     <div class="main-wrapper">
@@ -49,23 +49,29 @@
 
             <!-- FORM -->
             <form class="entry-form">
-                <input id="entryDate" type="date" class="entry-form__date">
-                <select id="entryType" class="entry-form__type">
-                    <option>📈 Έσοδο</option>
-                    <option>📉 Έξοδο</option>
-                </select>
-                <input id="product" type="text" class="entry-form__product" placeholder="Περιγραφή">
-                <input id="customer" type="text" class="entry-form__customer" placeholder="Πελάτης">
-                <input id="phone" type="tel" inputmode="numeric" pattern="[0-9]*" placeholder="Τηλέφωνο">
-                <input id="downpayment" type="number" class="entry-form__amount" placeholder="Προκαταβολή (€)">
-                <input id="notes" type="text" class="entry-form__notes" placeholder="Σημειώσεις">
-                <select id="method" class="entry-form__type">
-                    <option>💵 Μετρητά </option> 
-                    <option>💳 Κάρτα </option> 
-                    <option>🏦 Κατάθεση </option> 
-                </select>
-                <input id="amount" type="number" class="entry-form__amount" placeholder="Ποσό (€)">
-                <button type="button" onclick="addEntry()" class="btn btn--success entry-form__btn">Προσθήκη</button>
+                <!-- ΓΡΑΜΜΗ 1 -->
+                <div class="form-row">
+                    <input id="entryDate" type="date" class="entry-form__date">
+                    <select id="entryType" class="entry-form__type">
+                        <option>📈 Έσοδο</option>
+                        <option>📉 Έξοδο</option>
+                    </select>
+                    <input id="product" type="text" class="entry-form__product" placeholder="Περιγραφή">
+                    <input id="customer" type="text" class="entry-form__customer" placeholder="Πελάτης">
+                    <input id="phone" type="tel" inputmode="numeric" pattern="[0-9]*" placeholder="Τηλέφωνο">
+                </div>
+                <!-- ΓΡΑΜΜΗ 2 -->
+                 <div class="form-row">
+                    <input id="amount" type="number" class="entry-form__amount" placeholder="Ποσό (€)">
+                    <input id="downpayment" type="number" class="entry-form__amount" placeholder="Προκαταβολή (€)">
+                    <input id="notes" type="text" class="entry-form__notes" placeholder="Σημειώσεις">
+                    <select id="method" class="entry-form__type">
+                        <option>💵 Μετρητά </option> 
+                        <option>💳 Κάρτα </option> 
+                        <option>🏦 Κατάθεση </option> 
+                    </select>
+                    <button type="button" onclick="addEntry()" class="btn btn--success entry-form__btn">Προσθήκη</button>
+                </div>
             </form>
 
             <!-- TABS ΕΣΟΔΑ-ΕΞΟΔΑ -->
@@ -94,11 +100,13 @@
                 </table>
             </div>
         </section>
+
         <!-- ΠΑΡΑΓΓΕΛΙΕΣ Section -->
         <section id="section-paraggelies" class="app-section"> 
             <!-- SEARCH BAR ΓΙΑ ΠΑΡΑΓΓΕΛΙΣ -->
             <div class="search-bar">
                 <input type="search" id="searchOrderInput" class="search-bar__input" placeholder="🔍 Αναζήτηση...">
+                <input type="date" id="orderDateFilter" class="search-bar__date">
                 <button id="resetOrderBtn" class="btn btn--outline search-bar__btn" onclick="resetOrderFilters()">Reset</button>
             </div>
 

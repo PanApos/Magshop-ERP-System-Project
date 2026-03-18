@@ -1,9 +1,9 @@
-// MAGSHOP ERP v3.0
+// MAGSHOP ERP v3.1
 
-console.log('Magshop ERP v3.0 loaded');
+console.log('Magshop ERP v3.1 loaded');
 
-let entries = JSON.parse(localStorage.getItem('magshop_v3.0') || '[]');
-let orders = JSON.parse(localStorage.getItem('magshop_v3.0_orders') || '[]');
+let entries = JSON.parse(localStorage.getItem('magshop_v3.1') || '[]');
+let orders = JSON.parse(localStorage.getItem('magshop_v3.1_orders') || '[]');
 
 //DOM ELEMENTS
 const btnTamio = document.getElementById('btn-tamio');
@@ -13,9 +13,11 @@ const sectionParaggelies = document.getElementById('section-paraggelies');
 const searchOrderInput = document.getElementById('searchOrderInput');
 const ordersTableBody = document.getElementById ('ordersTableBody');
 
+
 //SEARCH BAR + FILTER
 const searchInput = document.getElementById('searchInput');
 const dateFilter = document.getElementById('dateFilter');
+const orderDateFilter = document.getElementById('orderDateFilter');
 const resetBtn = document.getElementById('resetBtn');
 const tableBody = document.getElementById('tableBody');
 const totalIncomeEl = document.getElementById('totalIncome');
@@ -26,15 +28,19 @@ const netBalanceEl = document.getElementById('netBalance');
 function showTamio() {
     sectionTamio.classList.add('active');
     sectionParaggelies.classList.remove('active');
+    btnTamio.classList.add('active');
+    btnParaggelies.classList.remove('active');
     renderTable();
 }
 function showParaggelies() {
     sectionTamio.classList.remove('active');
     sectionParaggelies.classList.add('active');
+    btnTamio.classList.remove('active');
+    btnParaggelies.classList.add('active');
     renderOrdersTable();
 }
 
-// NAVIGATION LISTENERS 
+// NAVIGATION EVENT  LISTENERS 
 btnTamio?.addEventListener('click', showTamio);
 btnParaggelies?.addEventListener('click', showParaggelies);
 
@@ -216,7 +222,7 @@ const filteredEntries = entries.filter(entry => {
                 <button class="action-btn status-btn ${entry.paid ? 'paid' : 'unpaid'}"
                 onclick="togglePaid(${entry.id})"
                 title="Κατάσταση">${entry.paid ? '✅' : '❌'}</button>
-                <button class="action-btn" onclick="deleteEntry(${entry.id})" title="Διαγραφή">🗑️</button>
+                <button class="action-btn delete-btn" onclick="deleteEntry(${entry.id})">🗑️</button>
             </td>
         `;
         tableBody.appendChild(row);
@@ -228,14 +234,18 @@ function renderOrdersTable() {
 
     const searchTerm = searchOrderInput ? searchOrderInput.value.toLowerCase() : '';
     ordersTableBody.innerHTML= '';
+    const filterDate = orderDateFilter ? orderDateFilter.value : '';
+
 
     const filteredOrders = orders.filter(order => {
         const matchesSearch =
             (order.orderId && order.orderId.toLowerCase().includes(searchTerm)) ||
             (order.supplier && order.supplier.toLowerCase().includes(searchTerm)) ||
             (order.orderDesc && order.orderDesc.toLowerCase().includes(searchTerm));
-            return matchesSearch;
+        const matchesDate = !filterDate || order.filterOrderDate === filterDate;
+        return matchesSearch && matchesDate;
     });
+    
 
     filteredOrders.forEach(order => {
         const row = document.createElement('tr');
@@ -258,7 +268,7 @@ function renderOrdersTable() {
             </button>
         </td>
         <td>
-            <button class="action-btn" onclick="deleteOrder(${order.id})" title="Διαγραφή">🗑️</button>
+            <button class="action-btn delete-btn" onclick="deleteOrder(${order.id})">🗑️</button>
         </td>
         `;
         ordersTableBody.appendChild(row);
@@ -309,6 +319,7 @@ function resetFilters() {
 
 function resetOrderFilters() {
     if (searchOrderInput) searchOrderInput.value = '';
+    if (orderDateFilter) orderDateFilter.value = '';
     renderOrdersTable();
 }
 
@@ -317,6 +328,7 @@ function resetOrderFilters() {
 // SEARCH /FILTER 
 if (searchInput) searchInput.addEventListener('input', renderTable);
 if (dateFilter) dateFilter.addEventListener('change', renderTable);
+if (orderDateFilter) orderDateFilter.addEventListener('change', renderOrdersTable);
 if (resetBtn) resetBtn.addEventListener('click', resetFilters);
 if (searchOrderInput) searchOrderInput.addEventListener('input', renderOrdersTable);
 
@@ -361,11 +373,11 @@ function toggleOrderStatus(id) {
 
 // SAVE DATA
 function saveData() {
-    localStorage.setItem('magshop_v3.0', JSON.stringify(entries));
+    localStorage.setItem('magshop_v3.1', JSON.stringify(entries));
 }
 
 function saveOrdersData() {
-    localStorage.setItem('magshop_v3.0_orders', JSON.stringify(orders));
+    localStorage.setItem('magshop_v3.1_orders', JSON.stringify(orders));
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -373,5 +385,5 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTable();
     updateStats();
     updateTabDisplay();
-    console.log(`v3.0 ready! Entries: ${entries.length} | Orders: ${orders.length}`);
+    console.log(`v3.1 ready! Entries: ${entries.length} | Orders: ${orders.length}`);
 });
