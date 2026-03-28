@@ -75,7 +75,7 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 
 ## Project Preview
 
-<img src="./Images/finance.png" alt="finance" width="400"><br>
+<img src="./Images/finance_sidebar.png" alt="finance" width="400"><br>
 
 **More Screenshots**
 
