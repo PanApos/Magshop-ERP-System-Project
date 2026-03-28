@@ -52,39 +52,64 @@
 - Method select options syntax fixed
 - textarea → input for notes field
 
----
-
 ## v3.0 (18-03-2026) - Orders Module
 
 ### ✨ New Features
-- Ξεχωριστό orders[] array & localStorage key 'magshop_v3.0_orders'
-- Φόρμα παραγγελιών: Ημ.Παραγγελίας, Ημ.Παράδοσης, Αρ.Παραγγελίας, Προμηθευτής, Περιγραφή, Ποσό, Σημειώσεις
-- Table παραγγελιών με toggle status (⏳ Εκκρεμεί / ✅ Παραλήφθη)
-- Search & Date filter για παραγγελίες
-- Delete παραγγελίας
+- Separate orders[] array & localStorage key 'magshop_v3.0_orders'
+- Orders Form : Ημ.Παραγγελίας, Ημ.Παράδοσης, Αρ.Παραγγελίας, Προμηθευτής, Περιγραφή, Ποσό, Σημειώσεις
+- Table orders με toggle status (⏳ Εκκρεμεί / ✅ Παραλήφθη)
+- Search & Date filter for orders
+- Delete order 
 - paid: auto-true όταν δεν υπάρχει προκαταβολή
-- Phone input: μόνο αριθμοί (regex replace)
+- Phone input: only number (regex replace)
 
 ### 🐛 Bug Fixes
-- parseFloat || 0 για ασφαλή αριθμητικές πράξεις
-- Event listener εκτός function (phoneInput)
+- parseFloat || 0 
+- Event listener out of function (phoneInput)
 
 ## v3.1 (18-03-2026) - Sidebar Dashboard Layout
 
 ### ✨ New Features
 - Sidebar navigation (fixed, 250px, 100vh)
-- Active state στα nav buttons (JS classList)
-- 2-γραμμή φόρμα Ταμείου (form-row layout)
-- CSS Specificity override για Παραγγελίες form
-- Focus states σε όλα τα inputs
-- min-width: 1280px για desktop-first
-- Date filter στις Παραγγελίες
+- Active state  nav buttons (JS classList)
+- 2 line form finance (form-row layout)
+- CSS Specificity override for orders form
+- Focus states all  inputs
+- min-width: 1280px desktop-first
+- Date filter for orders
 - localStorage key: 'magshop_v3.1'
 
 ### 🐛 Bug Fixes
 - flex-direction override για Orders form
 - min-width: 0 στα form inputs
 - orderAmount toFixed crash → parseFloat || 0
+
+## v4.0 (18-03-2026) - Edit Functionality & Downpayment Stats Logic
+
+### ✨ New Features
+- Edit Panel: Added a slide-in bottom panel for finance and orders.
+- Background Overlay: Implemented a blur effect for better UI focus.
+- Hidden Inputs: Used `input type="hidden"` to securely store register IDs.
+- Form Initialization: Added `openEditEntry()` and `openEditOrder()` to auto-populate forms with existing data.
+- Update Logic: Implemented `saveEditEntry()` and `saveEditOrder()` using the spread operator for immutable updates.
+- Precise Identification: Integrated `findIndex()` to accurately locate records within arrays.
+- Deposit Logic in Stats: Updated logic where unpaid status reflects the deposit amount, and paid reflects the full amount
+- Data Reversibility: Deposits are now persistently stored within the object.
+- UI Components: Added `btn--danger` class for the "Cancel" button.ς
+- Smooth Animations: Applied `cubic-bezier` transitions for the slide-in panel.
+- Z-index Layering: Refined layering order: Sidebar (1000) → Overlay (2000) → Panel (2001)
+- Enhanced Styling: Added `edit-btn` class with an accent hover effect for the ✏️ button.
+- State Management: `updateStats()` is now triggered within `togglePaid()`
+- localStorage key: 'magshop_v4.0'
+
+### 🐛 Bug Fixes
+- `editOrferId` typo → `editOrderId`
+- CSS `columns` → `color` στο edit panel
+- `edit-btn:hoveer` → `edit-btn:hover`
+- State Sync: Resolved issue where stats failed to refresh after `togglePaid()` by adding `updateStats()`
+- Date Format: Fixed date input bug by converting DD/MM/YYYY to YYYY-MM-DD using `padStart()`
+- ode Cleanup: Removed unused `statusIcon` dead code from `renderTable()`
+- HTML typo: `COMPOMETNS` → `COMPONENTS`
 
 ---
 
@@ -176,6 +201,32 @@
 - flex-direction override για Orders form
 - min-width: 0 στα inputs
 - orderAmount toFixed crash fix
+
+## v4.0 (18-03-2026) - Edit Functionality & Λογική Προκαταβολής
+
+### ✨ Νέες Λειτουργίες
+- Edit Panel (slide-in από κάτω) για Ταμείο & Παραγγελίες
+- Background Overlay με blur effect
+- `input type="hidden"` για αποθήκευση ID
+- Γέμισμα φόρμας με υπάρχοντα δεδομένα
+- Update εγγραφής με spread operator
+- `findIndex()` για ακριβή εντοπισμό
+- Λογική Stats: unpaid→προκαταβολή, paid→πλήρες ποσό
+- Αναστρεψιμότητα προκαταβολής
+- `btn--danger` για Ακύρωση
+- `cubic-bezier` animation
+- z-index layering: 1000→2000→2001
+- `updateStats()` στο `togglePaid()`
+- localStorage key: 'magshop_v4.0'
+
+### 🐛 Διορθώσεις
+- `editOrferId` → `editOrderId`
+- CSS `columns` → `color`
+- `hoveer` → `hover`
+- Stats δεν ενημερώνονταν μετά togglePaid
+- Date format DD/MM/YYYY → YYYY-MM-DD
+- Dead code αφαιρέθηκε
+- HTML typo: COMPOMETNS → COMPONENTS
 
 ---
 </details>

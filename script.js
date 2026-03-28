@@ -1,9 +1,9 @@
-// MAGSHOP ERP v3.1
+// MAGSHOP ERP v4.0
 
-console.log('Magshop ERP v3.1 loaded');
+console.log('Magshop ERP v4.0 loaded');
 
-let entries = JSON.parse(localStorage.getItem('magshop_v3.1') || '[]');
-let orders = JSON.parse(localStorage.getItem('magshop_v3.1_orders') || '[]');
+let entries = JSON.parse(localStorage.getItem('magshop_v4.0') || '[]');
+let orders = JSON.parse(localStorage.getItem('magshop_v4.0_orders') || '[]');
 
 //DOM ELEMENTS
 const btnTamio = document.getElementById('btn-tamio');
@@ -13,6 +13,10 @@ const sectionParaggelies = document.getElementById('section-paraggelies');
 const searchOrderInput = document.getElementById('searchOrderInput');
 const ordersTableBody = document.getElementById ('ordersTableBody');
 
+// EDIT ELEMENTS (v4.0)
+const editOverlay = document.getElementById('editOverlay');
+const editPanelFinance = document.getElementById('editPanelFinance');
+const editPanelOrders = document.getElementById('editPanelOrders');
 
 //SEARCH BAR + FILTER
 const searchInput = document.getElementById('searchInput');
@@ -206,9 +210,16 @@ const filteredEntries = entries.filter(entry => {
 
     filteredEntries.forEach(entry => {
         const row = document.createElement('tr');
-        const amountDisplay = entry.downpayment ? `${entry.amount.toFixed(2)}€<br><small class="downpayment-info">Προκ.:${entry.downpayment.toFixed(2)}€</small>
-        <br><small class="remaining-info">Υπόλ: ${(entry.amount - entry.downpayment).toFixed(2)}€</small>` : `${entry.amount.toFixed(2)}€`;
-        const statusIcon = entry.paid ? '✅' : '❌';
+
+        // Αν η εγγραφή είναι απλήρωτη και έχει προκαταβολή, εμφανίζουμε την ανάλυση.
+        // Αν εξοφληθεί (paid: true), δείχνουμε μόνο το τελικό ποσό καθαρό.
+        let amountDisplay = `${entry.amount.toFixed(2)}€`;
+        if (entry.downpayment > 0 && !entry.paid) {
+            const remaining = entry.amount - entry.downpayment;
+            amountDisplay += `<br><small class="downpayment-info">Προκ.: ${entry.downpayment.toFixed(2)}€</small>`;
+            amountDisplay += `<br><small class="remaining-info">Υπόλ.: ${remaining.toFixed(2)}€</small>`;
+        }
+
         row.innerHTML = `
             <td>${entry.date}</td>
             <td>${entry.type}</td>
@@ -222,6 +233,7 @@ const filteredEntries = entries.filter(entry => {
                 <button class="action-btn status-btn ${entry.paid ? 'paid' : 'unpaid'}"
                 onclick="togglePaid(${entry.id})"
                 title="Κατάσταση">${entry.paid ? '✅' : '❌'}</button>
+                <button class="action-btn edit-btn" onclick="openEditEntry(${entry.id})" title="Επεξεργασία">✏️</button>
                 <button class="action-btn delete-btn" onclick="deleteEntry(${entry.id})">🗑️</button>
             </td>
         `;
@@ -268,6 +280,7 @@ function renderOrdersTable() {
             </button>
         </td>
         <td>
+            <button class="action-btn edit-btn" onclick="openEditOrder(${order.id})" title="Επεξεργασία">✏️</button>
             <button class="action-btn delete-btn" onclick="deleteOrder(${order.id})">🗑️</button>
         </td>
         `;
@@ -279,10 +292,19 @@ function renderOrdersTable() {
 function updateStats() {
     const income = entries
         .filter(e => e.type === '📈 Έσοδο')
-        .reduce((sum, e) => sum + e.amount, 0);
+        .reduce((sum, e) => {
+            // Αν είναι εξοφλημένο (paid: true) πάρε όλο το ποσό, αλλιώς μόνο την προκαταβολή
+            const val = e.paid ? e.amount : (e.downpayment || 0);
+            return sum + val;
+        }, 0);
+
     const expense = entries
         .filter(e => e.type === '📉 Έξοδο')
-        .reduce((sum, e) => sum + e.amount, 0);
+        .reduce((sum, e) => {
+            const val = e.paid ? e.amount : (e.downpayment || 0);
+            return sum + val;
+        }, 0);
+        
     const balance = income - expense;
 
     if(totalIncomeEl) totalIncomeEl.textContent = income.toFixed(2) + '€';
@@ -356,8 +378,10 @@ function togglePaid(id) {
     const entry = entries.find(e => e.id === id);
     if (entry) {
         entry.paid = !entry.paid;
+        
         saveData();
         renderTable();
+        updateStats();
     }
 }
 
@@ -373,11 +397,127 @@ function toggleOrderStatus(id) {
 
 // SAVE DATA
 function saveData() {
-    localStorage.setItem('magshop_v3.1', JSON.stringify(entries));
+    localStorage.setItem('magshop_v4.0', JSON.stringify(entries));
 }
 
 function saveOrdersData() {
-    localStorage.setItem('magshop_v3.1_orders', JSON.stringify(orders));
+    localStorage.setItem('magshop_v4.0_orders', JSON.stringify(orders));
+}
+
+
+// EDIT FUNCTIONALITY LOGIC
+
+// Κλείσιμο των Panels
+function closeEditPanel() {
+    editOverlay.classList.remove('active');
+    editPanelFinance.classList.remove('active');
+    editPanelOrders.classList.remove('active');
+}
+
+// Άνοιγμα Επεξεργασίας Ταμείου
+function openEditEntry(id) {
+    const entry = entries.find(e => e.id === id);
+    if (!entry) return;
+
+    // Γέμισμα των πεδίων του panel με τα υπάρχοντα δεδομένα
+    document.getElementById('editId').value = entry.id;
+    document.getElementById('editDate').value = entry.filterDate;
+    document.getElementById('editType').value = entry.type;
+    document.getElementById('editProduct').value = entry.product;
+    document.getElementById('editCustomer').value = entry.customer;
+    document.getElementById('editPhone').value = entry.phone || '';
+    document.getElementById('editAmount').value = entry.amount;
+    document.getElementById('editDownpayment').value = entry.downpayment || '';
+    document.getElementById('editMethod').value = entry.method;
+    document.getElementById('editNotes').value = entry.notes || '';
+
+    // Εμφάνιση Panel
+    editOverlay.classList.add('active');
+    editPanelFinance.classList.add('active');
+}
+
+// Αποθήκευση Επεξεργασίας Ταμείου
+function saveEditEntry() {
+    const id = parseInt(document.getElementById('editId').value);
+    const index = entries.findIndex(e => e.id === id);
+    if (index === -1) return;
+
+    const dateStr = document.getElementById('editDate').value;
+
+    // Ενημέρωση του αντικειμένου στο array
+    entries[index] = {
+        ...entries[index], // Κράτα τα παλιά (π.χ. το id)
+        filterDate: dateStr,
+        date: new Date(dateStr).toLocaleDateString('el-GR'),
+        type: document.getElementById('editType').value,
+        product: document.getElementById('editProduct').value.trim(),
+        customer: document.getElementById('editCustomer').value.trim(),
+        phone: document.getElementById('editPhone').value.trim(),
+        amount: parseFloat(document.getElementById('editAmount').value) || 0,
+        downpayment: parseFloat(document.getElementById('editDownpayment').value) || 0,
+        method: document.getElementById('editMethod').value,
+        notes: document.getElementById('editNotes').value.trim()
+    };
+
+    saveData();
+    renderTable();
+    updateStats();
+    closeEditPanel();
+}
+
+// Άνοιγμα Επεξεργασίας Παραγγελιών
+function openEditOrder(id) {
+    const order = orders.find(o => o.id === id);
+    if (!order) return;
+
+    document.getElementById('editOrderId').value = order.id;
+    document.getElementById('editOrderDate').value = order.filterOrderDate;
+    
+    // Μετατροπή ημερομηνίας DD/MM/YYYY σε YYYY-MM-DD για το input
+    let delDateISO = '';
+    if(order.deliveryDate && order.deliveryDate !== '-') {
+        const parts = order.deliveryDate.split('/');
+        if(parts.length === 3) {
+            // Διασφάλιση μορφής YYYY-MM-DD με padding για μονοψήφιους αριθμούς
+            delDateISO = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+        }
+    }
+    document.getElementById('editDeliveryDate').value = delDateISO;
+
+    document.getElementById('editOrderRef').value = order.orderId !== '-' ? order.orderId : '';
+    document.getElementById('editSupplier').value = order.supplier;
+    document.getElementById('editOrderDesc').value = order.orderDesc;
+    document.getElementById('editOrderAmount').value = order.orderAmount;
+    document.getElementById('editOrderNotes').value = order.orderNotes !== '-' ? order.orderNotes : '';
+
+    editOverlay.classList.add('active');
+    editPanelOrders.classList.add('active');
+}
+
+// Αποθήκευση Επεξεργασίας Παραγγελιών
+function saveEditOrder() {
+    const id = parseInt(document.getElementById('editOrderId').value);
+    const index = orders.findIndex(o => o.id === id);
+    if (index === -1) return;
+
+    const orderDateStr = document.getElementById('editOrderDate').value;
+    const deliveryDateStr = document.getElementById('editDeliveryDate').value;
+
+    orders[index] = {
+        ...orders[index],
+        filterOrderDate: orderDateStr,
+        orderDate: new Date(orderDateStr).toLocaleDateString('el-GR'),
+        deliveryDate: deliveryDateStr ? new Date(deliveryDateStr).toLocaleDateString('el-GR') : '-',
+        orderId: document.getElementById('editOrderRef').value.trim() || '-',
+        supplier: document.getElementById('editSupplier').value.trim(),
+        orderDesc: document.getElementById('editOrderDesc').value.trim(),
+        orderAmount: parseFloat(document.getElementById('editOrderAmount').value) || 0,
+        orderNotes: document.getElementById('editOrderNotes').value.trim() || '-'
+    };
+
+    saveOrdersData();
+    renderOrdersTable();
+    closeEditPanel();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -385,5 +525,5 @@ document.addEventListener('DOMContentLoaded', () => {
     renderTable();
     updateStats();
     updateTabDisplay();
-    console.log(`v3.1 ready! Entries: ${entries.length} | Orders: ${orders.length}`);
+    console.log(`v4.0 ready! Entries: ${entries.length} | Orders: ${orders.length}`);
 });

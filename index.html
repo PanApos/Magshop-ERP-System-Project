@@ -2,7 +2,7 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <title>Magshop ERP v3.1</title>
+    <title>Magshop ERP v4.0</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -143,6 +143,86 @@
             </div>
         </section>
     </div>
+
+    <!-- EDIT COMPONENTS -->
+
+        <!-- BACKROUND OVERLAY -->
+        <div id="editOverlay" class="edit-overlay" onclick="closeEditPanel()"></div>
+
+            <!-- EDIT PANEL FINANCE(ΤΑΜΕΙΟ) -->
+            <div id="editPanelFinance" class="edit-panel">
+                <h3>✏️ Επεξεργασία Εγγραφής</h3>
+                <form  class="entry-form">
+                    <input type="hidden" id="editId">
+
+                    <div class="form-row">
+                        <input id="editDate" type="date" class="entry-form__date">
+                        <select id="editType" class="entry-form__type">
+                            <option>📈 Έσοδο</option>
+                            <option>📉 Έξοδο</option>
+                        </select>
+                        <input id="editProduct" type="text" class="entry-form__product" placeholder="Περιγραφή">
+                    </div>
+
+                    <div class="form-row">
+                        <input id="editCustomer" type="text" class="entry-form__customer" placeholder="Πελάτης / Προμηθευτής">
+                        <input id="editPhone" type="tel" placeholder="Τηλέφωνο">
+                    </div>
+
+                    <div class="form-row">
+                        <input id="editAmount" type="number" class="entry-form__amount" placeholder="Ποσό (€)">
+                        <input id="editDownpayment" type="number" class="entry-form__amount" placeholder="Προκαταβολή (€)">
+                        <select id="editMethod" class="entry-form__type">
+                            <option>💵 Μετρητά</option> 
+                            <option>💳 Κάρτα</option> 
+                            <option>🏦 Κατάθεση</option>
+                        </select>              
+                    </div>
+
+                    <div class="form-row">
+                        <input id="editNotes" type="text" class="entry-form__notes" placeholder="Σημειώσεις">
+                    </div>
+
+                    <div class="form-row">
+                        <button type="button" class="btn btn--danger" onclick="closeEditPanel()">✖️ Ακύρωση</button>
+                        <button type="button" class="btn btn--success" onclick="saveEditEntry()">✅ Αποθήκευση</button>
+                    </div>
+                </form>
+            </div>
+        <!-- EDIT PANEL ORDERS(ΠΑΡΑΓΓΕΛΙΕΣ) -->
+            <div id="editPanelOrders" class="edit-panel">
+                <h3>✏️ Επεξεργασία Παραγγελίας</h3>
+                <form class="entry-form">
+                    <input type="hidden" id="editOrderId">
+
+                    <div class="form-row">
+                        <label>Ημ.Παρ:</label>
+                        <input id="editOrderDate" type="date" class="entry-form__date">
+                        <label>Παράδοση:</label>
+                        <input id="editDeliveryDate" type="date" class="entry-form__date">
+                    </div>
+
+                    <div class="form-row">
+                        <input id="editOrderRef" type="text" class="entry-form__product" placeholder="Αρ. Παραγγελίας">
+                        <input id="editSupplier" type="text" class="entry-form__customer" placeholder="Προμηθευτής">
+                    </div>
+
+                    <div class="form-row">
+                        <input id="editOrderDesc" type="text" class="entry-form__product" placeholder="Περιγραφή / Προϊόντα">
+                        <input id="editOrderAmount" type="number" class="entry-form__amount" placeholder="Ποσό (€)">
+                    </div>
+            
+                    <div class="form-row">
+                        <input id="editOrderNotes" type="text" class="entry-form__notes" placeholder="Σημειώσεις">
+                    </div>
+
+                    <div class="form-row">
+                        <button type="button" class="btn btn--danger" onclick="closeEditPanel()">✖️ Ακύρωση</button>
+                        <button type="button" class="btn btn--success" onclick="saveEditOrder()">✅ Αποθήκευση</button>
+                    </div>
+                </form>
+            </div>
+        
 
      <script src="script.js"></script>
 </body>
