@@ -219,7 +219,7 @@
 - min-width: 0 στα inputs
 - orderAmount toFixed crash fix
 
-## v4.0 (18-03-2026) - Edit Functionality & Λογική Προκαταβολής
+## v4.0 (27-03-2026) - Edit Functionality & Λογική Προκαταβολής
 
 ### ✨ Νέες Λειτουργίες
 - Edit Panel (slide-in από κάτω) για Ταμείο & Παραγγελίες
