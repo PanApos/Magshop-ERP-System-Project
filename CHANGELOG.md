@@ -111,7 +111,7 @@
 - ode Cleanup: Removed unused `statusIcon` dead code from `renderTable()`
 - HTML typo: `COMPOMETNS` → `COMPONENTS`
 
-## v5.0 (20-03-2026) - Backup System, Exports & Dark Mode
+## v5.0 (30-03-2026) - Backup System, Exports & Dark Mode
 
 ### ✨ New Features
 - **Dark Mode:** Integrated toggle in sidebar header with LocalStorage persistence and CSS variables.
@@ -245,7 +245,7 @@
 - Dead code αφαιρέθηκε
 - HTML typo: COMPOMETNS → COMPONENTS
 
-## v5.0 (20-03-2026) - Σύστημα Backup, Εξαγωγές & Dark Mode
+## v5.0 (30-03-2026) - Σύστημα Backup, Εξαγωγές & Dark Mode
 
 ### ✨ Νέες Λειτουργίες
 - **Dark Mode:** Εναλλαγή θέματος στο Sidebar Header με αποθήκευση στο LocalStorage.
