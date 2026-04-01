@@ -2,7 +2,7 @@
 <html lang="el">
 <head>
     <meta charset="UTF-8">
-    <title>Magshop ERP v4.0</title>
+    <title>Magshop ERP v5.0</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -10,6 +10,7 @@
     <!-- SIDEBAR  DASHBOARD -->
     <aside class="sidebar">
         <div class="sidebar-header">
+             <button id="theme-toggle" class="theme-toggle-mini" title="Αλλαγή Θέματος">🌙</button>
             <img src="Logo/Magshop-GRADIENT-transp-02-02.png" alt="Magshop Logo" class="sidebar-logo">
         </div>
 
@@ -17,6 +18,18 @@
             <button id="btn-tamio" class="nav-btn active">💰 Ταμείο</button>
             <button id="btn-paraggelies" class="nav-btn">📦 Παραγγελίες</button>
         </nav>
+
+        <div class="sidebar-footer">
+            <div class="sidebar-divider"></div>
+            <p class="sidebar-label">📂 ΑΡΧΕΙΟ & BACKUP</p>
+            <div class="backup-controls">
+                <button class="nav-btn" onclick="downloadBackupJSON()">💾 Download JSON</button>
+                <button class="nav-btn" onclick="triggerRestore()">📥 Restore JSON</button>
+                <button class="nav-btn" onclick="downloadBackupCSV()">📊 Export Excel (CSV)</button>
+                <button class="nav-btn" onclick="downloadBackupTXT()">📄 Export Report (TXT)</button>
+                <input type="file" id="restoreFile" style="display: none" accept=".json">
+            </div>
+        </div>
     </aside>
 
     <!--MAIN CONTENT-->
@@ -26,7 +39,7 @@
 
                 <!-- SEARCH BAR  -->
                 <div class="search-bar">
-                    <input type="search" id="searchInput"   class="search-bar__input" placeholder="🔍     Αναζήτηση...">
+                    <input type="search" id="searchInput"   class="search-bar__input" placeholder="🔍   Αναζήτηση...">
                     <input type="date" id="dateFilter"  class="search-bar__date">
                     <button id="resetBtn" class="btn btn--outline   search-bar__btn" onclick="resetFilters()">Reset</button>
                 </div>
@@ -105,7 +118,7 @@
         <section id="section-paraggelies" class="app-section"> 
             <!-- SEARCH BAR ΓΙΑ ΠΑΡΑΓΓΕΛΙΣ -->
             <div class="search-bar">
-                <input type="search" id="searchOrderInput" class="search-bar__input" placeholder="🔍 Αναζήτηση...">
+                <input type="search" id="searchOrderInput" class="search-bar__input" placeholder="🔍    Αναζήτηση...">
                 <input type="date" id="orderDateFilter" class="search-bar__date">
                 <button id="resetOrderBtn" class="btn btn--outline search-bar__btn" onclick="resetOrderFilters()">Reset</button>
             </div>
@@ -222,8 +235,7 @@
                     </div>
                 </form>
             </div>
-        
-
+            
      <script src="script.js"></script>
 </body>
 </html>

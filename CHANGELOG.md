@@ -111,6 +111,23 @@
 - ode Cleanup: Removed unused `statusIcon` dead code from `renderTable()`
 - HTML typo: `COMPOMETNS` → `COMPONENTS`
 
+## v5.0 (20-03-2026) - Backup System, Exports & Dark Mode
+
+### ✨ New Features
+- **Dark Mode:** Integrated toggle in sidebar header with LocalStorage persistence and CSS variables.
+- **JSON Backup & Restore:** Complete data portability for entries and orders.
+- **Excel Export (CSV):** Professional export with Greek character support (BOM) and semicolon delimiters.
+- **TXT Report:** Detailed text-based summary of finance and orders.
+- **UI/UX:** Sidebar footer hover-activated menu for backup controls.
+- **Animations:** Added button "lift" effects and smooth cubic-bezier transitions for panels.
+
+### 🐛 Bug Fixes
+- **Date Parsing:** Fixed padding issues in `saveEditOrder` (DD/MM to YYYY-MM-DD conversion).
+- **ID Consistency:** Enforced `Number()` conversion for ID lookups to prevent type-mismatch bugs.
+- **Contrast Fixes:** Adjusted stats cards and label visibility in Dark Mode.
+- **Typo Cleanup:** Fixed `restoreFile` and `download` typos in function names and IDs.
+- **LocalStorage Key:** Updated to 'magshop_v5.0'.
+
 ---
 
 ## 🇬🇷 Ελληνική Έκδοση
@@ -227,6 +244,23 @@
 - Date format DD/MM/YYYY → YYYY-MM-DD
 - Dead code αφαιρέθηκε
 - HTML typo: COMPOMETNS → COMPONENTS
+
+## v5.0 (20-03-2026) - Σύστημα Backup, Εξαγωγές & Dark Mode
+
+### ✨ Νέες Λειτουργίες
+- **Dark Mode:** Εναλλαγή θέματος στο Sidebar Header με αποθήκευση στο LocalStorage.
+- **Backup & Restore (JSON):** Πλήρης εξαγωγή και εισαγωγή δεδομένων (Ταμείο & Παραγγελίες).
+- **Εξαγωγή Excel (CSV):** Υποστήριξη Ελληνικών (BOM) και ομαδοποίηση δεδομένων.
+- **Εξαγωγή Report (TXT):** Συνοπτική αναφορά κειμένου.
+- **UI/UX:** Hover menu στο Sidebar Footer για καθαρότερο περιβάλλον εργασίας.
+- **Animations:** Εφέ ανύψωσης στα κουμπιά και ομαλές μεταβάσεις στα panels.
+
+### 🐛 Διορθώσεις
+- **Padding Ημερομηνίας:** Διόρθωση στην επεξεργασία παραγγελιών (μετατροπή σε ISO format).
+- **Αξιοπιστία IDs:** Χρήση `Number()` για την αποφυγή σφαλμάτων στη σύγκριση IDs.
+- **Contrast:** Βελτίωση αναγνωσιμότητας στατιστικών και ετικετών στο Dark Mode.
+- **Typo Cleanup:** Διόρθωση ονομάτων σε συναρτήσεις και IDs (restoreFile).
+- **LocalStorage Key:** Ενημέρωση σε 'magshop_v5.0'.
 
 ---
 </details>

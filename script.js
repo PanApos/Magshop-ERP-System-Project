@@ -1,9 +1,9 @@
-// MAGSHOP ERP v4.0
+// MAGSHOP ERP v5.0
 
-console.log('Magshop ERP v4.0 loaded');
+console.log('Magshop ERP v5.0 loaded');
 
-let entries = JSON.parse(localStorage.getItem('magshop_v4.0') || '[]');
-let orders = JSON.parse(localStorage.getItem('magshop_v4.0_orders') || '[]');
+let entries = JSON.parse(localStorage.getItem('magshop_v5.0') || '[]');
+let orders = JSON.parse(localStorage.getItem('magshop_v5.0_orders') || '[]');
 
 //DOM ELEMENTS
 const btnTamio = document.getElementById('btn-tamio');
@@ -13,10 +13,12 @@ const sectionParaggelies = document.getElementById('section-paraggelies');
 const searchOrderInput = document.getElementById('searchOrderInput');
 const ordersTableBody = document.getElementById ('ordersTableBody');
 
-// EDIT ELEMENTS (v4.0)
+// EDIT ELEMENTS (v5.0)
 const editOverlay = document.getElementById('editOverlay');
 const editPanelFinance = document.getElementById('editPanelFinance');
 const editPanelOrders = document.getElementById('editPanelOrders');
+const themeToggle = document.getElementById('theme-toggle');
+
 
 //SEARCH BAR + FILTER
 const searchInput = document.getElementById('searchInput');
@@ -27,6 +29,31 @@ const tableBody = document.getElementById('tableBody');
 const totalIncomeEl = document.getElementById('totalIncome');
 const totalExpenseEl = document.getElementById('totalExpense');
 const netBalanceEl = document.getElementById('netBalance');
+
+//THEME TOGGLE LOGIC
+function initTheme() {
+    const saveTheme = localStorage.getItem('magshop_theme');
+    if (saveTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeToggle) themeToggle.textContent = '☀️';
+    }
+}
+
+themeToggle?.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+
+    let theme = 'light';
+    if (document.body.classList.contains('dark-mode')) {
+        theme='dark';
+        if (themeToggle) themeToggle.textContent = '☀️';
+    }
+    else {
+        if (themeToggle) themeToggle.textContent = '🌙';
+    }
+    
+    localStorage.setItem('magshop_theme', theme);
+    console.log(`Theme Changed To ${theme}`);
+});
 
 //NAVIGATION
 function showTamio() {
@@ -397,11 +424,11 @@ function toggleOrderStatus(id) {
 
 // SAVE DATA
 function saveData() {
-    localStorage.setItem('magshop_v4.0', JSON.stringify(entries));
+    localStorage.setItem('magshop_v5.0', JSON.stringify(entries));
 }
 
 function saveOrdersData() {
-    localStorage.setItem('magshop_v4.0_orders', JSON.stringify(orders));
+    localStorage.setItem('magshop_v5.0_orders', JSON.stringify(orders));
 }
 
 
@@ -520,10 +547,136 @@ function saveEditOrder() {
     closeEditPanel();
 }
 
+
+//BACKUP & RESTORE LOGIC(JSON),EXCEL,TXT
+function downloadBackupJSON() {
+    const backupData={
+        entries: entries,
+        orders: orders,
+        exportDate: new Date().toISOString()
+    };
+    const dataStr = JSON.stringify(backupData, null, 2);
+    const blob = new Blob([dataStr], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `magshop_backup_${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+    url.revokeObjectURL(url);
+}
+
+function downloadBackupCSV() {
+    if (entries.length === 0 && orders.length === 0) {
+        alert('⚠️ Δεν υπάρχουν δεδομένα για εξαγωγή.');
+        return;
+    }
+
+    let csvRows = [];
+
+    // --- ΕΝΟΤΗΤΑ ΤΑΜΕΙΟ ---
+    const financeHeaders = ["ΤΑΜΕΙΟ", "", "", "", "", "", "", ""];
+    csvRows.push(financeHeaders.join(';'));
+    const headers = ["Ημερομηνία", "Τύπος", "Περιγραφή", "Πελάτης/Προμηθευτής", "Τηλέφωνο", "Σημειώσεις", "Μέθοδος", "Ποσό (€)"];
+    csvRows.push(headers.join(';')); // Χρήση ερωτηματικού για Ελληνικό Excel
+
+    entries.forEach(e => {
+        const row = [
+            e.date,
+            e.type,
+            e.product,
+            e.customer,
+            e.phone || '-',
+            e.notes || '-',
+            e.method,
+            e.amount.toFixed(2).replace('.', ',') // Υποστήριξη δεκαδικών για Excel
+        ];
+        csvRows.push(row.join(';'));
+    });
+
+    // Κενή γραμμή διαχωρισμού
+    csvRows.push(";;;;;;;");
+
+    // --- ΕΝΟΤΗΤΑ ΠΑΡΑΓΓΕΛΙΕΣ ---
+    const orderHeadersTitle = ["ΠΑΡΑΓΓΕΛΙΕΣ", "", "", "", "", "", "", ""];
+    csvRows.push(orderHeadersTitle.join(';'));
+    const orderHeaders = ["Ημ. Παραγγελίας", "Ημ. Παράδοσης", "Αρ. Παραγγελίας", "Προμηθευτής", "Περιγραφή", "Ποσό (€)", "Σημειώσεις", "Κατάσταση"];
+    csvRows.push(orderHeaders.join(';'));
+
+    orders.forEach(o => {
+        const row = [
+            o.orderDate,
+            o.deliveryDate,
+            o.orderId,
+            o.supplier,
+            o.orderDesc,
+            o.orderAmount.toFixed(2).replace('.', ','),
+            o.orderNotes,
+            o.status ? '✅ Παραλήφθη' : '⏳ Εκκρεμεί'
+        ];
+        csvRows.push(row.join(';'));
+    });
+
+    const csvString = "\uFEFF" + csvRows.join('\n'); // Προσθήκη BOM για Ελληνικά
+    const blob = new Blob([csvString], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `magshop_full_report_${new Date().toISOString().split('T')[0]}.csv`;
+    link.click();
+}
+
+function downloadBackupTXT() {
+    let txt = `=== MAGSHOP ERP REPORT [${new Date().toLocaleDateString('el-GR')}] ===\n\n`;
+    
+    txt += "--- ΤΑΜΕΙΟ ---\n";
+    entries.forEach(e => {
+        txt += `[${e.date}] ${e.type} | ${e.product} | ${e.customer} | ${e.amount.toFixed(2)}€\n`;
+    });
+
+    txt += "\n--- ΠΑΡΑΓΓΕΛΙΕΣ ---\n";
+    orders.forEach(o => {
+        txt += `[${o.orderDate}] ${o.supplier} | ${o.orderDesc} | ${o.orderAmount.toFixed(2)}€ | ${o.status ? '✅' : '⏳'}\n`;
+    });
+
+    const blob = new Blob([txt], { type: 'text/plain;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = `magshop_full_report_${new Date().toISOString().split('T')[0]}.txt`;
+    link.click();
+}
+
+function triggerRestore() {
+    document.getElementById('restoreFile').click();
+}
+
+document.getElementById('restoreFile')?.addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        try {
+            const data = JSON.parse(e.target.result);
+            if (data.entries && data.orders) {
+                if (confirm('⚠️ ΠΡΟΣΟΧΗ: Τα τρέχοντα δεδομένα θα αντικατασταθούν πλήρως. Συνέχεια;')) {
+                    localStorage.setItem('magshop_v5.0', JSON.stringify(data.entries));
+                    localStorage.setItem('magshop_v5.0_orders', JSON.stringify(data.orders));
+                    location.reload();
+                }
+            } else { alert('⚠️ Μη έγκυρο αρχείο backup.'); }
+        } catch (err) { alert('⚠️ Σφάλμα κατά την ανάγνωση του αρχείου.'); }
+    };
+    reader.readAsText(file);
+});
+
+
 document.addEventListener('DOMContentLoaded', () => {
+    initTheme();
     showTamio();
     renderTable();
     updateStats();
     updateTabDisplay();
-    console.log(`v4.0 ready! Entries: ${entries.length} | Orders: ${orders.length}`);
+    console.log(`v5.0 ready! Entries: ${entries.length} | Orders: ${orders.length}`);
 });

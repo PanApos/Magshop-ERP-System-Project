@@ -1,6 +1,6 @@
-/* Magshop ERP v4.0  */
+/* Magshop ERP v5.0  */
 
-/* CSS Variables */
+/* CSS VARIABLES */
 :root {
   --primary: #2c3e50;
   --success: #27ae60;
@@ -14,6 +14,88 @@
   --border-color: #eee;
 }
 
+/* DARK MODE VARIABLES */
+body.dark-mode {
+  --bg-body: #000000;
+  --bg-card: #0a0a0a;
+  --text-main: #e0e0e0;
+  --accent: #C49543;
+  --border-color: #C49543;
+  --input-bg: #1a1a1a;
+  --search-bg: #0a0a0a;
+  --primary: #121212;
+}
+
+
+
+body.dark-mode .search-bar {
+  background: var(--search-bg);
+  border: 1px solid var(--gold);
+}
+
+body.dark-mode .search-bar input {
+  background: var(--input-bg);
+  color:var(--text-main);
+}
+
+body.dark-mode .form-row input, 
+body.dark-mode .form-row select, 
+body.dark-mode .entry-form input,
+body.dark-mode .entry-form select {
+  background:var(--input-bg);
+  color: var(--text-main);
+  border-color: #333;
+}
+
+body.dark-mode .entry-form {
+    background: var(--bg-card);
+    border: 1px solid rgba(196, 149, 67, 0.3);
+}
+
+body.dark-mode input:focus {
+    border-color: var(--gold);
+    box-shadow: 0 0 8px rgba(196, 149, 67, 0.2);
+}
+
+/* Dark Mode Table Styling (Prototype Match) */
+body.dark-mode .table-container {
+    background: var(--bg-card);
+    border: 1px solid var(--gold);
+}
+
+body.dark-mode th {
+    background: #0a0a0a;
+    color: var(--gold);
+    border-bottom: 2px solid var(--gold);
+}
+
+body.dark-mode td {
+    border-bottom: 1px solid #1a1a1a;
+}
+
+body.dark-mode tr:hover {
+    background: rgba(196, 149, 67, 0.05);
+}
+
+body.dark-mode .nav-btn.active {
+    background: var(--gold);
+    color: black;
+}
+
+body.dark-mode .edit-panel {
+    background: var(--bg-card);
+    border-top: 4px solid var(--gold);
+    box-shadow: 0 -5px 25px rgba(196, 149, 67, 0.15);
+}
+
+body.dark-mode .btn--outline {
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    background: transparent;
+}
+
+
+
 /* BODY */
 body {
   font-family: 'Segoe UI', Arial, sans-serif;
@@ -22,6 +104,7 @@ body {
   background: var(--bg-body);
   color: var(--text-main);
   min-width: 1280px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
 /*SIDEBAR DASHBOARD */
@@ -43,9 +126,63 @@ body {
 
 .sidebar-header {
   text-align: center;
-  margin-bottom: 40px;
+  margin-bottom: 30px;
   padding-bottom: 20px;
   border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+}
+
+.theme-toggle-mini {
+  position: absolute;
+  top: -15px;
+  background: rgba(255,255,255,0.05);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 8px;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle-mini:hover {
+  transform: scale(1.2) rotate(15deg);
+  background: rgba(255,255,255,0.1);
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top:20px;
+}
+
+.sidebar-divider {
+  height: 1px;
+  background: rgba(255,255,255,0.1);
+  margin: 15px 0;
+}
+
+.sidebar-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+  padding-left: 20px;
+}
+
+.backup-controls {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.sidebar-footer:hover .backup-controls {
+  max-height: 400px;
+  opacity: 1;
+  margin-bottom: 20px;
 }
 
 .sidebar-logo {
@@ -122,6 +259,7 @@ body {
   padding: 12px 20px;
   border-radius: 8px;
   cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 /* STATS */
@@ -144,14 +282,14 @@ body {
 
 .stats-grid--income { background: linear-gradient(135deg, var(--success), #2ecc71); }
 .stats-grid--expense { background: linear-gradient(135deg, var(--danger), #c0392b); }
-.stats-grid--balance { background: linear-gradient(135deg, var(--accent), #5dade2); }
+.stats-grid--balance { background: linear-gradient(135deg, #3498db, #5dade2); }
 
 .stats-value { font-size: 32px; font-weight: 700; }
 
 .stats-card--active {
   transform:  translateY(-4px);
   box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-  outline: 3px solid rgba(255,255,255,0.6);
+  outline: 3px solid var(--accent);
 }
 
 /* ΤΑΜΕΙΟ FORM */
@@ -208,6 +346,7 @@ body {
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
 .btn--danger {
@@ -219,6 +358,17 @@ body {
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* HOVER ANIMATIONS FOR MAIN BUTTONS */
+.btn--success:hover, .btn--danger:hover, .search-bar__btn:hover, .btn--outline:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.btn--success:active, .btn--danger:active, .search-bar__btn:active, .btn--outline:active {
+    transform: translateY(-1px);
 }
 
 /* ΠΑΡΑΓΓΕΛΙΕΣ FORM */
@@ -355,7 +505,7 @@ tr:hover { background: rgba(52,152,219,0.04); }
 }
 
 .action-btn.edit-btn:hover {
-  background: var(--accent);
+  background: #3498db;
 }
 /* SECTIONS */
 .app-section { display: none; }
