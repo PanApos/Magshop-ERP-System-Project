@@ -1,6 +1,6 @@
 # MagShop ERP System
 
-A modern Business ERP (Enterprise Resource Planning) System designed for small businesses. Developed from a blank canvas, evolving into a fully functional desktop web application.
+A modern Business ERP (Enterprise Resource Planning) System designed for small businesses. Developed from a blank canvas, evolving into a fully functional  web application.
 (Optimized for Desktop Experience)
 
 > **⚠️ Project Status: Completed at v5.0**
@@ -146,7 +146,7 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
 # MagShop ERP System
 
-Ένα σύγχρονο Σύστημα ERP σχεδιασμένο για μικρές επιχειρήσεις. Αναπτύχθηκε από μηδενική βάση και εξελίχθηκε σε πλήρως λειτουργική desktop web εφαρμογή.
+Ένα σύγχρονο Σύστημα ERP σχεδιασμένο για μικρές επιχειρήσεις. Αναπτύχθηκε από μηδενική βάση και εξελίχθηκε σε πλήρως λειτουργική web εφαρμογή.
 
 > **⚠️ Κατάσταση Project: Ολοκληρώθηκε στο v5.0**
 
