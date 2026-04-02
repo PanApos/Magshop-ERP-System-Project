@@ -13,7 +13,7 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 🔹 **Purpose:** Manage business finances and orders efficiently.<br>
 🔹 **Target Users:** Small business owners (Retail/Wholesale).<br>
 🔹 **Language:** Greek.<br>
-🔹 **Platform:** Desktop Web Application (Browser-based)
+🔹 **Platform:** Web Application (Browser-based)
 
 ---
 
@@ -157,7 +157,7 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 🔹 **Σκοπός:** Αποτελεσματική διαχείριση οικονομικών και παραγγελιών.<br>
 🔹 **Στόχος:** Μικρές επιχειρήσεις (Λιανική/Χονδρική).<br>
 🔹 **Γλώσσα:** Ελληνικά.<br>
-🔹 **Πλατφόρμα:** Desktop Web Application (Browser-based)
+🔹 **Πλατφόρμα:** Web Application (Browser-based)
 
 ---
 
