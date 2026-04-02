@@ -3,6 +3,9 @@
 A modern Business ERP (Enterprise Resource Planning) System designed for small businesses. Developed from a blank canvas, evolving into a fully functional desktop web application.
 (Optimized for Desktop Experience)
 
+> **⚠️ Project Status: Completed at v5.0**
+> Development concluded at v5.0. See [Why v5.0 is the final version](#-why-v50-is-the-final-version) for details.
+
 ---
 
 ## Project Overview
@@ -10,14 +13,14 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 🔹 **Purpose:** Manage business finances and orders efficiently.<br>
 🔹 **Target Users:** Small business owners (Retail/Wholesale).<br>
 🔹 **Language:** Greek.<br>
-🔹 **Platform:** Desktop (Future: Electron.js)
+🔹 **Platform:** Desktop Web Application (Browser-based)
 
 ---
 
 ## Tech Stack
 
 🔹 **HTML5** - Semantic Structure<br>
-🔹 **CSS3** - Modern Styling, Flexbox, CSS Variables<br>
+🔹 **CSS3** - Modern Styling, Flexbox, CSS Variables, Dark Mode<br>
 🔹 **JavaScript (Vanilla)** - Logic & Interactivity<br>
 🔹 **LocalStorage** - Data persistence (No backend required)<br>
 🔹 **VS Code** - Development Environment<br>
@@ -25,10 +28,25 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 
 ---
 
+## Current Features (v5.0 — Final)
+
+🔹 Sidebar Dashboard layout with Dark/Light Mode toggle.<br>
+🔹 Income & Expense management with downpayment logic.<br>
+🔹 Orders module with status tracking (Pending / Received).<br>
+🔹 Full CRUD — Add, Edit, Delete for all records.<br>
+🔹 Real-time financial statistics (Income / Expense / Balance).<br>
+🔹 Search, Date filter & reset for both modules.<br>
+🔹 JSON Backup & Restore — full data portability.<br>
+🔹 Excel (CSV) Export with Greek character support.<br>
+🔹 TXT Report Export.<br>
+🔹 LocalStorage persistence with versioned keys.
+
+---
+
 ## Design System & UI/UX
 
-🔹 **Theme:** Clean, professional business aesthetic.<br>
-🔹 **Color Palette:** Navy Blue primary (`#2c3e50`) with accent blue (`#3498db`), success green (`#27ae60`), and danger red (`#e74c3c`).<br>
+🔹 **Theme:** Clean, professional business aesthetic + Dark Mode (Black/Gold).<br>
+🔹 **Color Palette:** Navy Blue primary (`#2c3e50`), accent blue (`#3498db`), success green (`#27ae60`), danger red (`#e74c3c`), gold (`#C49543`).<br>
 🔹 **Typography:** Segoe UI / Arial for maximum readability.<br>
 🔹 **Design Tool:** Figma (Wireframes & Final Design before coding)
 
@@ -38,9 +56,9 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 
 ### 1. Development Phase
 
-🔹 **Version-Based Development:** Each feature is developed as a separate version for better tracking and easy rollback.<br>
-🔹 **Manual Coding:** Every line of code is written and understood (no copy-paste without understanding).<br>
-🔹 **AI as Learning Assistant:** AI is used as a "Senior Mentor" for explanations and best practices, not for blind code generation.
+🔹 **Version-Based Development:** Each feature developed as a separate version for tracking and rollback.<br>
+🔹 **Manual Coding:** Every line of code written and understood — no blind copy-paste.<br>
+🔹 **AI as Learning Assistant:** Used as a "Senior Mentor" for explanations and best practices, not for code generation.
 
 ### 2. Testing & Deployment
 
@@ -50,26 +68,38 @@ A modern Business ERP (Enterprise Resource Planning) System designed for small b
 
 ---
 
-## Current Features (v1.2)
+## 🛑 Why v5.0 is the Final Version
 
-🔹 HTML5 semantic structure & navigation between modules.<br>
-🔹 Income & Expense entry form with date, type, description, customer, amount.<br>
-🔹 LocalStorage data persistence (data survives page refresh).<br>
-🔹 Dynamic table rendering with real-time delete functionality.<br>
-🔹 Real-time financial statistics (Income / Expense / Balance).<br>
-🔹 Search by description or customer name.<br>
-🔹 Date filter & reset functionality.<br>
-🔹 CSS Variables design system with professional UI.
+The original roadmap included **v6.0 — Electron.js Desktop Application**. During the attempt to package the app as a Windows `.exe`, a real-world obstacle was encountered: **Windows SmartScreen** blocks unsigned executables.
+
+**The options were:**
+- EV Code Signing Certificate → ~€400/year
+- Standard Certificate → ~€100/year (partial protection)
+- Self-Signed Certificate → requires manual installation by each user (not viable)
+
+For a study case at this stage, none of these options were justified. This is a **real engineering decision** — not every project needs to reach its final form to deliver value.
+
+**What this project achieved:**
+- Full CRUD web application from scratch
+- Professional Dashboard UI/UX design
+- Data portability (Backup/Restore/Export)
+- Dark Mode with CSS Variables
+- Version-based development methodology
+
+The project is **complete and functional** as a browser-based desktop application.
 
 ---
 
-## Roadmap
+## Roadmap — Completed
 
-🔹 **v2.0** - Tabs for Income/Expense switching<br>
-🔹 **v3.0** - Order Management Module<br>
-🔹 **v4.0** - Edit functionality<br>
-🔹 **v5.0** - Backup/Export (JSON/Excel) + Dark Mode<br>
-🔹 **v6.0** - Electron.js Desktop Application
+🔹 **v1.1** - Basic Layout ✅<br>
+🔹 **v1.2** - LocalStorage & Core ✅<br>
+🔹 **v2.0** - Income/Expense Tabs & Form Expansion ✅<br>
+🔹 **v3.0** - Orders Module ✅<br>
+🔹 **v3.1** - Sidebar Dashboard Layout ✅<br>
+🔹 **v4.0** - Edit Functionality & Downpayment Logic ✅<br>
+🔹 **v5.0** - Backup/Export + Dark Mode ✅<br>
+🔹 **v6.0** - Electron.js Desktop App ⛔ (Code Signing cost — not justified at this stage)
 
 ---
 
@@ -101,18 +131,6 @@ See [CHANGELOG.md](CHANGELOG.md) for detailed version history.
 
 ---
 
-## AI-Assisted Engineering
-
-This project uses **AI as a Learning Tool** following the **AI-Augmentation** methodology:
-
-🔹 **Code Explanations:** AI explains each line of code for understanding.<br>
-🔹 **Best Practices:** Suggestions for clean code, naming conventions, and structure.<br>
-🔹 **Problem Solving:** Debug assistance and optimization tips.
-
-> **Note:** The key principle is **"Understand before using"** — AI helps learn faster, but doesn't replace the developer's understanding.
-
----
-
 ## Links
 
 🔹 **Portfolio:** [apospan.com](https://apospan.com/)<br>
@@ -124,12 +142,13 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 ## 🇬🇷 Ελληνική Έκδοση
 
 <details>
-  <summary><b>Κάντε κλικ για να δείτε την περιγραφή στα Ελληνικά</b></summary>
+<summary><b>Κάντε κλικ για να δείτε την περιγραφή στα Ελληνικά</b></summary>
 
 # MagShop ERP System
 
-Ένα σύγχρονο Σύστημα ERP σχεδιασμένο για μικρές επιχειρήσεις. Αναπτύχθηκε από μηδενική βάση και εξελίχθηκε σε πλήρως λειτουργική desktop εφαρμογή.
-(Βελτιστοποιημένο για Desktop Εμπειρία)
+Ένα σύγχρονο Σύστημα ERP σχεδιασμένο για μικρές επιχειρήσεις. Αναπτύχθηκε από μηδενική βάση και εξελίχθηκε σε πλήρως λειτουργική desktop web εφαρμογή.
+
+> **⚠️ Κατάσταση Project: Ολοκληρώθηκε στο v5.0**
 
 ---
 
@@ -138,82 +157,47 @@ This project uses **AI as a Learning Tool** following the **AI-Augmentation** me
 🔹 **Σκοπός:** Αποτελεσματική διαχείριση οικονομικών και παραγγελιών.<br>
 🔹 **Στόχος:** Μικρές επιχειρήσεις (Λιανική/Χονδρική).<br>
 🔹 **Γλώσσα:** Ελληνικά.<br>
-🔹 **Πλατφόρμα:** Desktop (Μελλοντικά: Electron.js)
+🔹 **Πλατφόρμα:** Desktop Web Application (Browser-based)
 
 ---
 
-## Tech Stack
+## Τρέχοντα Features (v5.0 — Final)
 
-🔹 **HTML5** - Σημασιολογική Δομή<br>
-🔹 **CSS3** - Σύγχρονο Styling, Flexbox, CSS Variables<br>
-🔹 **JavaScript (Vanilla)** - Λογική & Διαδραστικότητα<br>
-🔹 **LocalStorage** - Αποθήκευση Δεδομένων (Χωρίς Backend)<br>
-🔹 **VS Code** - Περιβάλλον Ανάπτυξης<br>
-🔹 **GitHub** - Έλεγχος Εκδόσεων
-
----
-
-## Design System & UI/UX
-
-🔹 **Θέμα:** Καθαρή, επαγγελματική αισθητική.<br>
-🔹 **Χρωματική Παλέτα:** Navy Blue (`#2c3e50`), accent blue (`#3498db`), success green (`#27ae60`), danger red (`#e74c3c`).<br>
-🔹 **Τυπογραφία:** Segoe UI / Arial για μέγιστη αναγνωσιμότητα.<br>
-🔹 **Εργαλείο Σχεδιασμού:** Figma (Wireframes & Final Design πριν τον κώδικα)
+🔹 Sidebar Dashboard με Dark/Light Mode.<br>
+🔹 Διαχείριση Εσόδων/Εξόδων με λογική προκαταβολής.<br>
+🔹 Module Παραγγελιών με tracking κατάστασης.<br>
+🔹 Πλήρες CRUD — Προσθήκη, Επεξεργασία, Διαγραφή.<br>
+🔹 Real-time στατιστικά (Έσοδα / Έξοδα / Υπόλοιπο).<br>
+🔹 Search & Date filter και στα δύο modules.<br>
+🔹 JSON Backup & Restore.<br>
+🔹 Export σε Excel (CSV) με υποστήριξη Ελληνικών.<br>
+🔹 Export σε TXT Report.
 
 ---
 
-## Ροή Εργασίας
+## 🛑 Γιατί το v5.0 είναι η τελική έκδοση
 
-### 1. Φάση Ανάπτυξης
+Ο αρχικός roadmap περιλάμβανε **v6.0 — Electron.js Desktop Application**. Κατά την προσπάθεια δημιουργίας Windows `.exe`, προέκυψε ένα πραγματικό εμπόδιο: το **Windows SmartScreen** μπλοκάρει unsigned εκτελέσιμα.
 
-🔹 **Ανάπτυξη βάσει Εκδόσεων:** Κάθε feature αναπτύσσεται ξεχωριστά.<br>
-🔹 **Χειροκίνητη Κωδικοποίηση:** Κάθε γραμμή κώδικα γράφεται και κατανοείται.<br>
-🔹 **AI ως Βοηθός Μάθησης:** Χρησιμοποιείται ως "Senior Μέντορας", όχι για αυτόματη παραγωγή κώδικα.
+**Οι επιλογές ήταν:**
+- EV Code Signing Certificate → ~€400/χρόνο
+- Standard Certificate → ~€100/χρόνο
+- Self-Signed Certificate → απαιτεί manual εγκατάσταση από κάθε χρήστη
 
-### 2. Δοκιμή & Ανάπτυξη
-
-🔹 **Live Server:** Τοπική ανάπτυξη με VS Code Live Server.<br>
-🔹 **Browser Testing:** Chrome/Firefox.<br>
-🔹 **GitHub:** Repository για ιστορικό εκδόσεων.
+Για study case σε αυτό το στάδιο, καμία επιλογή δεν δικαιολογείτο. Αυτή είναι μια **πραγματική μηχανολογική απόφαση** — δεν χρειάζεται κάθε project να φτάσει στην τελική του μορφή για να έχει αξία.
 
 ---
 
-## Τρέχοντα Features (v1.2)
+## Roadmap — Ολοκληρωμένο
 
-🔹 Semantic HTML5 δομή & πλοήγηση μεταξύ modules.<br>
-🔹 Φόρμα καταχώρησης Εσόδων/Εξόδων με ημερομηνία, τύπο, περιγραφή, πελάτη, ποσό.<br>
-🔹 LocalStorage persistence (τα δεδομένα παραμένουν μετά το refresh).<br>
-🔹 Dynamic table rendering με delete functionality.<br>
-🔹 Real-time οικονομικά στατιστικά (Έσοδα / Έξοδα / Υπόλοιπο).<br>
-🔹 Αναζήτηση βάσει περιγραφής ή πελάτη.<br>
-🔹 Φίλτρο ημερομηνίας & reset.<br>
-🔹 CSS Variables design system με επαγγελματικό UI.
-
----
-
-## Roadmap
-
-🔹 **v2.0** - Tabs Εσόδων/Εξόδων<br>
-🔹 **v3.0** - Module Παραγγελιών<br>
-🔹 **v4.0** - Λειτουργία Επεξεργασίας<br>
-🔹 **v5.0** - Backup/Export (JSON/Excel) + Dark Mode<br>
-🔹 **v6.0** - Electron.js Desktop Εφαρμογή
-
----
-
-## Ιστορικό Εκδόσεων
-
-Δείτε το [CHANGELOG.md](CHANGELOG.md) για αναλυτικό ιστορικό.
-
----
-
-## AI-Assisted Engineering
-
-🔹 **Εξηγήσεις Κώδικα:** Το AI εξηγεί κάθε γραμμή για κατανόηση.<br>
-🔹 **Best Practices:** Προτάσεις για καθαρό κώδικα και δομή.<br>
-🔹 **Επίλυση Προβλημάτων:** Βοήθεια στο debugging.
-
-> **Αρχή:** "Κατανόησε πριν χρησιμοποιήσεις" — το AI βοηθά να μάθεις γρηγορότερα, δεν αντικαθιστά την κατανόηση.
+🔹 **v1.1** - Βασικό Layout ✅<br>
+🔹 **v1.2** - LocalStorage & Core ✅<br>
+🔹 **v2.0** - Tabs Εσόδων/Εξόδων ✅<br>
+🔹 **v3.0** - Module Παραγγελιών ✅<br>
+🔹 **v3.1** - Sidebar Dashboard Layout ✅<br>
+🔹 **v4.0** - Edit Functionality ✅<br>
+🔹 **v5.0** - Backup/Export + Dark Mode ✅<br>
+🔹 **v6.0** - Electron.js Desktop App ⛔ (Κόστος Code Signing)
 
 ---
 

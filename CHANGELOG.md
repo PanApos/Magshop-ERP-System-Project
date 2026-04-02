@@ -84,7 +84,7 @@
 - min-width: 0 στα form inputs
 - orderAmount toFixed crash → parseFloat || 0
 
-## v4.0 (18-03-2026) - Edit Functionality & Downpayment Stats Logic
+## v4.0 (27-03-2026) - Edit Functionality & Downpayment Stats Logic
 
 ### ✨ New Features
 - Edit Panel: Added a slide-in bottom panel for finance and orders.
@@ -95,7 +95,7 @@
 - Precise Identification: Integrated `findIndex()` to accurately locate records within arrays.
 - Deposit Logic in Stats: Updated logic where unpaid status reflects the deposit amount, and paid reflects the full amount
 - Data Reversibility: Deposits are now persistently stored within the object.
-- UI Components: Added `btn--danger` class for the "Cancel" button.ς
+- UI Components: Added `btn--danger` class for the "Cancel" button.
 - Smooth Animations: Applied `cubic-bezier` transitions for the slide-in panel.
 - Z-index Layering: Refined layering order: Sidebar (1000) → Overlay (2000) → Panel (2001)
 - Enhanced Styling: Added `edit-btn` class with an accent hover effect for the ✏️ button.
@@ -108,10 +108,10 @@
 - `edit-btn:hoveer` → `edit-btn:hover`
 - State Sync: Resolved issue where stats failed to refresh after `togglePaid()` by adding `updateStats()`
 - Date Format: Fixed date input bug by converting DD/MM/YYYY to YYYY-MM-DD using `padStart()`
-- ode Cleanup: Removed unused `statusIcon` dead code from `renderTable()`
+- Code Cleanup: Removed unused `statusIcon` dead code from `renderTable()`
 - HTML typo: `COMPOMETNS` → `COMPONENTS`
 
-## v5.0 (30-03-2026) - Backup System, Exports & Dark Mode
+## v5.0 (01-04-2026) - Backup System, Exports & Dark Mode
 
 ### ✨ New Features
 - **Dark Mode:** Integrated toggle in sidebar header with LocalStorage persistence and CSS variables.
@@ -127,6 +127,12 @@
 - **Contrast Fixes:** Adjusted stats cards and label visibility in Dark Mode.
 - **Typo Cleanup:** Fixed `restoreFile` and `download` typos in function names and IDs.
 - **LocalStorage Key:** Updated to 'magshop_v5.0'.
+
+## ⛔ v6.0 (02-04-2026)- Electron.js Desktop Application (Cancelled)
+
+Development of the Electron.js desktop app was attempted but cancelled due to
+the cost of a Code Signing Certificate (~€400/year) required to bypass
+Windows SmartScreen. The project is complete and archived at v5.0.
 
 ---
 
@@ -245,7 +251,7 @@
 - Dead code αφαιρέθηκε
 - HTML typo: COMPOMETNS → COMPONENTS
 
-## v5.0 (30-03-2026) - Σύστημα Backup, Εξαγωγές & Dark Mode
+## v5.0 (01-04-2026) - Σύστημα Backup, Εξαγωγές & Dark Mode
 
 ### ✨ Νέες Λειτουργίες
 - **Dark Mode:** Εναλλαγή θέματος στο Sidebar Header με αποθήκευση στο LocalStorage.
@@ -262,5 +268,10 @@
 - **Typo Cleanup:** Διόρθωση ονομάτων σε συναρτήσεις και IDs (restoreFile).
 - **LocalStorage Key:** Ενημέρωση σε 'magshop_v5.0'.
 
+## ⛔ v6.0 (02/04/2026) - Electron.js Desktop Application (Ακυρώθηκε)
+
+Η ανάπτυξη της Electron.js εφαρμογής ξεκίνησε αλλά ακυρώθηκε λόγω
+κόστους πιστοποιητικού Code Signing (~€400/χρόνο) για παράκαμψη του
+Windows SmartScreen. Το project ολοκληρώθηκε και αρχειοθετήθηκε στο v5.0.
 ---
 </details>
